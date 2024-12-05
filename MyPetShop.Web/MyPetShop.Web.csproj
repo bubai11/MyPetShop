@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{279B8608-10F1-47EB-BD99-3738EF56D021}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyPetShop.Web</RootNamespace>
+    <AssemblyName>MyPetShop.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44337</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Admin\ManageOrders.aspx" />
+    <Content Include="Admin\ManagePets.aspx" />
+    <Content Include="Admin\ManageUsers.aspx" />
+    <Content Include="App_Data\MyPetShop.mdf" />
+    <Content Include="App_Data\MyPetShop_log.ldf">
+      <DependentUpon>MyPetShop.mdf</DependentUpon>
+    </Content>
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\map.jpg" />
+    <Content Include="Images\mouseOut.jpg" />
+    <Content Include="Images\mouseOver.jpg" />
+    <Content Include="Prod_Images\Backyard\cat.gif" />
+    <Content Include="Prod_Images\Backyard\zebra.gif" />
+    <Content Include="Prod_Images\Birds\domestic.gif" />
+    <Content Include="Prod_Images\Birds\flowerloving.gif" />
+    <Content Include="Prod_Images\Bugs\ant.gif" />
+    <Content Include="Prod_Images\Bugs\butterfly.gif" />
+    <Content Include="Prod_Images\Endangered\panda.gif" />
+    <Content Include="Prod_Images\Endangered\pointy.gif" />
+    <Content Include="Prod_Images\Fish\eucalyptus.gif" />
+    <Content Include="Prod_Images\Fish\meno.gif" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Prod_Images\Backyard\Thumbs.db" />
+    <Content Include="Prod_Images\Birds\Thumbs.db" />
+    <Content Include="Prod_Images\Bugs\Thumbs.db" />
+    <Content Include="Prod_Images\Endangered\Thumbs.db" />
+    <Content Include="Prod_Images\Fish\Thumbs.db" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\FileJS.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="MasterPage.master" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Site.Master" />
+    <Content Include="SiteNavigation.ascx" />
+    <Content Include="Sql\MyPetShop.sql" />
+    <Content Include="Styles\Exterior.css" />
+    <Content Include="UserStatus.ascx" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Bundle.config" />
+    <Content Include="Site.Mobile.Master" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\ManageOrders.aspx.cs">
+      <DependentUpon>ManageOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageOrders.aspx.designer.cs">
+      <DependentUpon>ManageOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManagePets.aspx.cs">
+      <DependentUpon>ManagePets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManagePets.aspx.designer.cs">
+      <DependentUpon>ManagePets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.master.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.master.designer.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SiteNavigation.ascx.cs">
+      <DependentUpon>SiteNavigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteNavigation.ascx.designer.cs">
+      <DependentUpon>SiteNavigation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserStatus.ascx.cs">
+      <DependentUpon>UserStatus.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserStatus.ascx.designer.cs">
+      <DependentUpon>UserStatus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\" />
+    <Folder Include="Prod_Images\Fish1\" />
+    <Folder Include="UserControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyPetShop.BLL\MyPetShop.BLL.csproj">
+      <Project>{4f77b083-9f84-4b88-a34c-4f924d88d982}</Project>
+      <Name>MyPetShop.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyPetShop.DAL\MyPetShop.DAL.csproj">
+      <Project>{f072f763-5dae-43b9-99fb-bb3c44aeec4c}</Project>
+      <Name>MyPetShop.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>11365</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44337/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.targets')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
