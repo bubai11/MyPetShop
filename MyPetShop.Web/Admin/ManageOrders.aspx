@@ -10,6 +10,14 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            起始日期：<asp:TextBox ID="txtStartTime" runat="server" Width="70px"></asp:TextBox>
+            <ajaxToolkit:CalendarExtender ID="txtStartTime_cldE" runat="server"  TargetControlID="txtStartTime" Format="yyyy-MM-dd"/>
+            结束日期：<asp:TextBox ID="txtEndTime" runat="server" Width="70px"></asp:TextBox>
+            <ajaxToolkit:CalendarExtender ID="txtEndTime_cldE" runat="server" TargetControlID="txtEndTime" Format="yyyy-MM-dd" />
+            <asp:Button ID="BtnSearch" runat="server" Text="搜索" OnClick="BtnSearch_Click" /><br />
+            <asp:Label ID="lblDisplay" runat="server" ></asp:Label>
+
         </div>
     </form>
 </body>

@@ -71,6 +71,20 @@
       <Column Name="Qty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Product_CartItem" Member="CartItem" ThisKey="ProductId" OtherKey="ProId" Type="CartItem" />
       <Association Name="Category_Product" Member="Category" ThisKey="CategoryId" OtherKey="CategoryId" Type="Category" IsForeignKey="true" />
+      <Association Name="Supplier_Product" Member="Supplier" ThisKey="SuppId" OtherKey="SuppId" Type="Supplier" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Supplier" Member="Supplier">
+    <Type Name="Supplier">
+      <Column Name="SuppId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Addr1" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Addr2" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Association Name="Supplier_Product" Member="Product" ThisKey="SuppId" OtherKey="SuppId" Type="Product" />
     </Type>
   </Table>
 </Database>

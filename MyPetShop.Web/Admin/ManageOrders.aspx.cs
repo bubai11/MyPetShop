@@ -13,5 +13,9 @@ namespace MyPetShop.Web.Admin
         {
 
         }
+        protected void BtnSearch_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "显示从" + txtStartTime.Text + "到" + txtEndTime.Text + "的数据！";
+        }
     }
 }

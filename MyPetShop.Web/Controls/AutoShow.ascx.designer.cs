@@ -7,11 +7,11 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace MyPetShop.Web
+namespace MyPetShop.Web.UserControls
 {
 
 
-    public partial class _Default
+    public partial class AutoShow
     {
     }
 }

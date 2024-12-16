@@ -22,7 +22,7 @@ namespace MyPetShop.Web
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 // 将搜索条件通过 QueryString 传递到搜索结果页面
-                Response.Redirect($"SearchResults.aspx?query={HttpUtility.UrlEncode(searchQuery)}");
+                //Response.Redirect($"SearchResults.aspx?query={HttpUtility.UrlEncode(searchQuery)}");
             }
             else
             {
