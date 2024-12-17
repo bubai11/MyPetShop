@@ -1,10 +1,10 @@
-ï»¿//------------------------------------------------------------------------------
-// <è‡ªåŠ¨ç”Ÿæˆ>
-//     æ­¤ä»£ç ç”±å·¥å…·ç”Ÿæˆã€‚
+//------------------------------------------------------------------------------
+// <×Ô¶¯Éú³É>
+//     ´Ë´úÂëÓÉ¹¤¾ßÉú³É¡£
 //
-//     å¯¹æ­¤æ–‡ä»¶çš„æ›´æ”¹å¯èƒ½å¯¼è‡´ä¸æ­£ç¡®çš„è¡Œä¸ºï¼Œå¦‚æœ
-//     é‡æ–°ç”Ÿæˆä»£ç ï¼Œåˆ™æ‰€åšæ›´æ”¹å°†ä¸¢å¤±ã€‚
-// </è‡ªåŠ¨ç”Ÿæˆ>
+//     ¶Ô´ËÎÄ¼şµÄ¸ü¸Ä¿ÉÄÜµ¼ÖÂ²»ÕıÈ·µÄĞĞÎª£¬Èç¹û
+//     ÖØĞÂÉú³É´úÂë£¬ÔòËù×ö¸ü¸Ä½«¶ªÊ§¡£
+// </×Ô¶¯Éú³É>
 //------------------------------------------------------------------------------
 
 namespace MyPetShop.Web.Controls
@@ -15,84 +15,39 @@ namespace MyPetShop.Web.Controls
     {
 
         /// <summary>
-        /// pnlLoggedIn æ§ä»¶ã€‚
+        /// lblStatus ¿Ø¼ş¡£
         /// </summary>
         /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
+        /// ×Ô¶¯Éú³ÉµÄ×Ö¶Î¡£
+        /// ÈôÒª½øĞĞĞŞ¸Ä£¬Çë½«×Ö¶ÎÉùÃ÷´ÓÉè¼ÆÆ÷ÎÄ¼şÒÆµ½´úÂëÒş²ØÎÄ¼ş¡£
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlLoggedIn;
+        protected global::System.Web.UI.WebControls.Label lblStatus;
 
         /// <summary>
-        /// lblUsername æ§ä»¶ã€‚
+        /// lnkAction1 ¿Ø¼ş¡£
         /// </summary>
         /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
+        /// ×Ô¶¯Éú³ÉµÄ×Ö¶Î¡£
+        /// ÈôÒª½øĞĞĞŞ¸Ä£¬Çë½«×Ö¶ÎÉùÃ÷´ÓÉè¼ÆÆ÷ÎÄ¼şÒÆµ½´úÂëÒş²ØÎÄ¼ş¡£
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAction1;
 
         /// <summary>
-        /// lnkShoppingHistory æ§ä»¶ã€‚
+        /// lnkAction2 ¿Ø¼ş¡£
         /// </summary>
         /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
+        /// ×Ô¶¯Éú³ÉµÄ×Ö¶Î¡£
+        /// ÈôÒª½øĞĞĞŞ¸Ä£¬Çë½«×Ö¶ÎÉùÃ÷´ÓÉè¼ÆÆ÷ÎÄ¼şÒÆµ½´úÂëÒş²ØÎÄ¼ş¡£
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkShoppingHistory;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAction2;
 
         /// <summary>
-        /// lnkAdminPanel æ§ä»¶ã€‚
+        /// lnkAction3 ¿Ø¼ş¡£
         /// </summary>
         /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
+        /// ×Ô¶¯Éú³ÉµÄ×Ö¶Î¡£
+        /// ÈôÒª½øĞĞĞŞ¸Ä£¬Çë½«×Ö¶ÎÉùÃ÷´ÓÉè¼ÆÆ÷ÎÄ¼şÒÆµ½´úÂëÒş²ØÎÄ¼ş¡£
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkAdminPanel;
-
-        /// <summary>
-        /// lnkChangePassword æ§ä»¶ã€‚
-        /// </summary>
-        /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkChangePassword;
-
-        /// <summary>
-        /// lnkLogout æ§ä»¶ã€‚
-        /// </summary>
-        /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkLogout;
-
-        /// <summary>
-        /// pnlLoggedOut æ§ä»¶ã€‚
-        /// </summary>
-        /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlLoggedOut;
-
-        /// <summary>
-        /// lnkLogin æ§ä»¶ã€‚
-        /// </summary>
-        /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkLogin;
-
-        /// <summary>
-        /// lnkRegister æ§ä»¶ã€‚
-        /// </summary>
-        /// <remarks>
-        /// è‡ªåŠ¨ç”Ÿæˆçš„å­—æ®µã€‚
-        /// è‹¥è¦è¿›è¡Œä¿®æ”¹ï¼Œè¯·å°†å­—æ®µå£°æ˜ä»è®¾è®¡å™¨æ–‡ä»¶ç§»åˆ°ä»£ç éšè—æ–‡ä»¶ã€‚
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkRegister;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAction3;
     }
 }

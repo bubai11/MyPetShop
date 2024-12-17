@@ -46,8 +46,9 @@ namespace MyPetShop.Web
                 if (user != null)
                 {
                     // 登录成功，保存用户信息到 Session
-                    Session["UserName"] = user.Name;
-                    Session["Email"] = user.Email;
+                    HttpContext.Current.Session["Username"] = user.Name;
+                    HttpContext.Current.Session["IsAdmin"] = user.Name.Equals("admin");
+
 
                     // 重定向到首页或其他页面
                     Response.Redirect("Default.aspx");

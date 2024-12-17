@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,8 @@ namespace MyPetShop.DAL
 {
     public class CustomerDAL
     {
-        private readonly string connectionString = "Server=localhost;Database=MyPetShop;User Id=sa;Password=123;";
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["MyPetShopConnectionString"].ConnectionString;
+        //private readonly string connectionString = "Server=localhost;Database=MyPetShop;User Id=sa;Password=123;";
 
         // 登录验证方法
         public Customer GetCustomerByCredentials(string username, string password)
