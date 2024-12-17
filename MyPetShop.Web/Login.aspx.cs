@@ -20,28 +20,28 @@ namespace MyPetShop.Web
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // 检查协议是否勾选
-            if (!chkAgreement.Checked)
-            {
-                lblMessage.Text = "请同意安全协议与隐私协议！";
-                return;
-            }
+            //// 检查协议是否勾选
+            //if (!chkAgreement.Checked)
+            //{
+            //    lblMessage.Text = "请同意安全协议与隐私协议！";
+            //    return;
+            //}
 
-            string name = txtName.Text.Trim();
-            string password = txtPassword.Text.Trim();
+            //string name = txtName.Text.Trim();
+            //string password = txtPassword.Text.Trim();
 
-            if (customerBLL.Login(name, password, out DataRow userData))
-            {
-                // 登录成功，保存用户状态
-                Session["UserName"] = userData["Name"];
-                Session["Email"] = userData["Email"];
+            //if (customerBLL.Login(name, password, out DataRow userData))
+            //{
+            //    // 登录成功，保存用户状态
+            //    Session["UserName"] = userData["Name"];
+            //    Session["Email"] = userData["Email"];
 
-                Response.Redirect("Default.aspx");
-            }
-            else
-            {
-                lblMessage.Text = "用户名或密码错误！";
-            }
+            //    Response.Redirect("Default.aspx");
+            //}
+            //else
+            //{
+            //    lblMessage.Text = "用户名或密码错误！";
+            //}
         }
 
     }
