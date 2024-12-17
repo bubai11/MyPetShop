@@ -32,8 +32,8 @@ namespace MyPetShop.Web.Controls
                 {
                     lnkAdminPanel.Visible = false;
                     lnkShoppingHistory.Visible = true;
-                }
-            }
+        }
+    }
             else
             {
                 // 用户未登录
