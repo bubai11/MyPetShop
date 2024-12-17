@@ -5,12 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
 
 </head>
 <body>
 <div class="text-center">
-    <img src="./Images/pet-shop.png" alt="MyPetShop Logo" style="height: 60px; margin: 20px;">
+    <img src="./Images/pet-shop.png" alt="MyPetShop Logo" style="height: 60px; margin: 20px;"/>
 </div>
 <div class="loginForm">
     <h2>用户登录</h2>
@@ -29,14 +29,14 @@
             <asp:TextBox ID="txtPassword" CssClass="form-control" TextMode="Password" placeholder="请输入密码" runat="server"></asp:TextBox>
         </div>
         
-        <!-- 安全协议复选框 -->
+<%--        <!-- 安全协议复选框 -->
         <div class="form-check mb-3">
             <asp:CheckBox ID="chkAgreement" CssClass="form-check-input" runat="server" />
             <label class="form-check-label" for="chkAgreement">
                 我同意 <a href="#">xxx安全协议</a> 和 <a href="#">xxx隐私协议</a>
             </label>
         </div>
-        
+        --%>
         <!-- 登录按钮 -->
         <div>
             <asp:Button ID="btnLogin" CssClass="btn btn-primary" Text="登 录" OnClick="btnLogin_Click" runat="server" />

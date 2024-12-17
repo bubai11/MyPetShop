@@ -105,10 +105,6 @@
     <Content Include="Admin\ManageOrders.aspx" />
     <Content Include="Admin\ManagePets.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
-    <Content Include="App_Data\MyPetShop.mdf" />
-    <Content Include="App_Data\MyPetShop_log.ldf">
-      <DependentUpon>MyPetShop.mdf</DependentUpon>
-    </Content>
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -127,11 +123,6 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Controls\Category.ascx" />
-    <Content Include="Controls\NewProduct.ascx" />
-    <Content Include="Controls\PetTree.ascx" />
-    <Content Include="Controls\SiteMap.ascx" />
-    <Content Include="Controls\UserStatus.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -296,56 +287,6 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Category.ascx.cs">
-      <DependentUpon>Category.ascx</DependentUpon>
-<<<<<<< HEAD
-      <SubType>ASPXCodeBehind</SubType>
-=======
->>>>>>> a5bae2a04e261759a090aba9400034da809ce2fc
-    </Compile>
-    <Compile Include="Controls\Category.ascx.designer.cs">
-      <DependentUpon>Category.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\NewProduct.ascx.cs">
-      <DependentUpon>NewProduct.ascx</DependentUpon>
-<<<<<<< HEAD
-      <SubType>ASPXCodeBehind</SubType>
-=======
->>>>>>> a5bae2a04e261759a090aba9400034da809ce2fc
-    </Compile>
-    <Compile Include="Controls\NewProduct.ascx.designer.cs">
-      <DependentUpon>NewProduct.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PetTree.ascx.cs">
-      <DependentUpon>PetTree.ascx</DependentUpon>
-<<<<<<< HEAD
-      <SubType>ASPXCodeBehind</SubType>
-=======
->>>>>>> a5bae2a04e261759a090aba9400034da809ce2fc
-    </Compile>
-    <Compile Include="Controls\PetTree.ascx.designer.cs">
-      <DependentUpon>PetTree.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SiteMap.ascx.cs">
-      <DependentUpon>SiteMap.ascx</DependentUpon>
-<<<<<<< HEAD
-      <SubType>ASPXCodeBehind</SubType>
-=======
->>>>>>> a5bae2a04e261759a090aba9400034da809ce2fc
-    </Compile>
-    <Compile Include="Controls\SiteMap.ascx.designer.cs">
-      <DependentUpon>SiteMap.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UserStatus.ascx.cs">
-      <DependentUpon>UserStatus.ascx</DependentUpon>
-<<<<<<< HEAD
-      <SubType>ASPXCodeBehind</SubType>
-=======
->>>>>>> a5bae2a04e261759a090aba9400034da809ce2fc
-    </Compile>
-    <Compile Include="Controls\UserStatus.ascx.designer.cs">
-      <DependentUpon>UserStatus.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -422,7 +363,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\" />
+    <Folder Include="App_Data\" />
     <Folder Include="App_LocalResources\" />
     <Folder Include="Prod_Images\Fish1\" />
     <Folder Include="UserControl\" />

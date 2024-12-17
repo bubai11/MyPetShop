@@ -9,7 +9,7 @@ namespace MyPetShop.Web
 {
     public partial class SiteMaster : MasterPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected new void Page_Load(object sender, EventArgs e)
         {
 
         }

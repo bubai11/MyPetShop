@@ -20,29 +20,51 @@ namespace MyPetShop.Web
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // 检查协议是否勾选
-            if (!chkAgreement.Checked)
-            {
-                lblMessage.Text = "请同意安全协议与隐私协议！";
-                return;
-            }
+            //// 检查协议是否勾选
+            //if (!chkAgreement.Checked)
+            //{
+            //    lblMessage.Text = "请同意安全协议与隐私协议！";
+            //    return;
+            //}
 
             string name = txtName.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            if (customerBLL.Login(name, password, out DataRow userData))
+            // 检查输入是否为空
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password))
             {
-                // 登录成功，保存用户状态
-                Session["UserName"] = userData["Name"];
-                Session["Email"] = userData["Email"];
-
-                Response.Redirect("Default.aspx");
+                lblMessage.Text = "用户名和密码不能为空！";
+                return;
             }
-            else
+
+            try
             {
-                lblMessage.Text = "用户名或密码错误！";
+                // 调用业务逻辑层的登录方法
+                var user = customerBLL.Login(name, password);
+                System.Diagnostics.Debug.WriteLine(user);
+
+                if (user != null)
+                {
+                    // 登录成功，保存用户信息到 Session
+                    Session["UserName"] = user.Name;
+                    Session["Email"] = user.Email;
+
+                    // 重定向到首页或其他页面
+                    Response.Redirect("Default.aspx");
+                }
+                else
+                {
+                    // 登录失败，显示错误信息
+                    lblMessage.Text = "用户名或密码错误！";
+                }
+            }
+            catch (Exception ex)
+            {
+                // 捕获异常并显示错误信息
+                lblMessage.Text = "登录失败，请稍后再试！";
+                // 日志记录异常（可选）
+                Console.WriteLine(ex.Message);
             }
         }
-
     }
 }
