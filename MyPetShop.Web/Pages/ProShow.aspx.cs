@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MyPetShop.Web
+namespace MyPetShop.Web.Pages
 {
-    public partial class SiteNavigation : System.Web.UI.UserControl
+    public partial class ProShow : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MyPetShop.Web._Default" %>
-<%@ Register Src="~/Controls/AutoShow.ascx" TagPrefix="uc" TagName="AutoShow" %>
+<%--<%@ Register Src="~/Controls/AutoShow.ascx" TagPrefix="uc" TagName="AutoShow" %>--%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 

@@ -1,6 +1,9 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="MyPetShop.Web.MasterPage" %>  
 <%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions" %>
-<%@ Register TagPrefix="uc1" Namespace="MyPetShop.Web.Controls" Assembly="MyPetShop.Web" %>
+<%@ Register Src="~/Controls/UserStatus.ascx" TagPrefix="uc1" TagName="UserStatus" %>
+<%@ Register src="~/Controls/SiteMap.ascx"TagPrefix="uc1" TagName="SiteMap" %>
+<%--<%@ Register TagPrefix="uc1" Namespace="MyPetShop.Web.Controls" Assembly="MyPetShop.Web" %>--%>
+
 
 
 
@@ -32,7 +35,7 @@
     <!-- 顶部导航栏 -->
     <div class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="Default.aspx">
-            <img src="./Images/pet-shop.png" alt="MyPetShop Logo" style="height: 40px;">
+            <img src="<%= ResolveUrl("~/Images/pet-shop.png") %>" alt="MyPetShop Logo" style="height: 40px;">
         </a>
     </div>
 
@@ -63,6 +66,8 @@
                     <asp:Label ID="lblMessage" runat="server" CssClass="text-danger mt-2"></asp:Label>  
                 </div>  
             </div>
+            
+            <%--显示用户状态控件--%>
             <div class="col-md-4 text-right">
                 <uc1:UserStatus ID="UserStatus" runat="server" />
             </div>

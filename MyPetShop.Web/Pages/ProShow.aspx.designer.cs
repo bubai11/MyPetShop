@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyPetShop.Web
+namespace MyPetShop.Web.Pages
 {
 
 
-    public partial class SiteNavigation
+    public partial class ProShow
     {
     }
 }
