@@ -8,7 +8,7 @@
     <title></title>
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" 
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
-</head>
+
 <style>
 body {
             background-image: url(./Images/bg.jpg);
@@ -82,7 +82,7 @@ body {
     margin-bottom: 15px;
     margin-top: 15px;
 }
-    </style>
+    </style></head>
 <body>
 <div class="index">
     <div class="loginForm">
@@ -173,6 +173,7 @@ body {
                 </div>
         </div>
     </form>
+    </div>
     </div>
 </body>
 </html>

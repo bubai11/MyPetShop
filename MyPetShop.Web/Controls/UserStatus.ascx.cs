@@ -60,5 +60,4 @@ namespace MyPetShop.Web.Controls
             }
         }
     }
-    }
 }

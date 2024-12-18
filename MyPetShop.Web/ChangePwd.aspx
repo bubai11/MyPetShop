@@ -1,10 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GetPwd.aspx.cs" Inherits="MyPetShop.Web.GetPwd" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangePwd.aspx.cs" Inherits="MyPetShop.Web.ChangePwd" %>
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>找回密码</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>用户密码修改</title>
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
+    
     <style>
         body {
             background-image: url(./Images/bg.jpg);
@@ -62,48 +65,51 @@
         <div class="text-center">
             <img src="./Images/pet-shop.png" alt="MyPetShop Logo" style="height: 60px; margin: 20px;"/>
         </div>
-        <h2>找回密码</h2>
+        <h2>修改密码</h2>
         <form id="form1" runat="server" class="container mt-5">
             <div class="form-group">
-                <label for="txtName">用户名</label>
-                <asp:TextBox ID="txtName" CssClass="form-control" placeholder="请输入用户名" runat="server"></asp:TextBox>
+                <label for="txtOldPwd">原密码</label>
+                <asp:TextBox ID="txtOldPwd" TextMode="Password" CssClass="form-control" placeholder="请输入原密码" runat="server"></asp:TextBox>
                 
     <asp:RequiredFieldValidator 
-        ControlToValidate="txtName" 
+        ControlToValidate="txtOldPwd" 
         Display="Dynamic" 
         ForeColor="Red" 
-        ID="rfvName" 
+        ID="rfvOldPwd" 
         runat="server" 
         ErrorMessage="必填">
     </asp:RequiredFieldValidator>
             </div>
             <div class="form-group">
-                <label for="txtEmail">邮箱</label>
-                <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="请输入邮箱" runat="server"></asp:TextBox>
+                <label for="txtPwd">新密码</label>
+                <asp:TextBox ID="txtPwd" TextMode="Password" CssClass="form-control" placeholder="请输入新密码" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator 
-    ControlToValidate="txtEmail" 
+    ControlToValidate="txtPwd" 
     Display="Dynamic" 
     ForeColor="Red" 
-    ID="rfvEmail" 
+    ID="rfvPwd" 
     runat="server" 
     ErrorMessage="必填">
 </asp:RequiredFieldValidator>
-<asp:RegularExpressionValidator 
-    ID="revEmail" 
-    runat="server" 
-    ErrorMessage="邮箱格式不正确!" 
-    ControlToValidate="txtEmail" 
-    Display="Dynamic" 
-    ForeColor="Red" 
-    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
-</asp:RegularExpressionValidator>
             </div>
-            
-            <div class="tips">
-                <a href="Login.aspx">返回登录</a>
+            <div class="form-group">
+                <label for="txtPwdAgain">确认新密码</label>
+                <asp:TextBox ID="TextBox1" TextMode="Password" CssClass="form-control" placeholder="请再次输入新密码" runat="server"></asp:TextBox>
+               
+    <asp:RequiredFieldValidator 
+        ControlToValidate="txtPwdAgain" 
+        Display="Dynamic" 
+        ForeColor="Red" 
+        ID="RequiredFieldValidator1" 
+        runat="server" 
+        ErrorMessage="必填">
+    </asp:RequiredFieldValidator>
             </div>
+            <asp:CompareValidator ControlToValidate="txtPwdAgain" ID="cvPwd" runat="server" ErrorMessage="两次密码不一致">
+
+            </asp:CompareValidator>
             <div class="loginbtn">
-                <asp:Button ID="btnResetPwd" CssClass="btn btn-primary" Text="找回密码" OnClick="btnResetPwd_Click" runat="server" />
+                <asp:Button ID="btnChangePwd" CssClass="btn btn-primary" Text="确认修改" OnClick="BtnChangePwd_Click" runat="server" />
             </div>
             <div class="mt-3">
                 <asp:Label ID="lblMsg" CssClass="text-danger" runat="server"></asp:Label>

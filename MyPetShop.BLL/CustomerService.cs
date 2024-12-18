@@ -10,6 +10,7 @@ namespace MyPetShop.BLL
 {
     public class CustomerService
     {
+        //MyPetShopEntities db = new MyPetShopEntities();
         private readonly CustomerDAL customerDAL = new CustomerDAL();
 
         // 登录验证业务逻辑
@@ -42,10 +43,19 @@ namespace MyPetShop.BLL
         }
 
         // 重置密码业务逻辑
-        public bool ResetPassword(string username, string email, string newPassword)
+        public bool ResetPassword(string username)
         {
-            return customerDAL.UpdateCustomerPassword(username, email, newPassword);
+            return customerDAL.UpdateCustomerPassword(username, username);
         }
+
+        //public bool IsEmailExist(string name,string email)
+        //{
+        //    Customer customer=db.Customer.Where(
+        //}
+
+        public void ChangePassword(string username,string password) {
+            customerDAL.UpdateCustomerPassword(username, password);
+        } 
     }
 
 }

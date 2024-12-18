@@ -172,7 +172,7 @@ namespace MyPetShop.DAL
             }
         }
         // 更新用户密码
-        public bool UpdateCustomerPassword(string username, string email, string newPassword)
+        public bool UpdateCustomerPassword(string username,string pwd)
         {
             try
             {
@@ -181,8 +181,7 @@ namespace MyPetShop.DAL
                     string sql = "UPDATE Customer SET Password = @Password WHERE Name = @Name AND Email = @Email";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = username;
-                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
-                    cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = newPassword;
+                    cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = pwd;
 
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();

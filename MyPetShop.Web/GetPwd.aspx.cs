@@ -10,55 +10,68 @@ namespace MyPetShop.Web
 {
     public partial class GetPwd : System.Web.UI.Page
     {
-        private readonly CustomerService customerBLL = new CustomerService();
+        private readonly CustomerService customerSrv = new CustomerService();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
         // 提交按钮点击事件处理程序
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void btnResetPwd_Click(object sender, EventArgs e)
         {
-            string username = txtName.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            string captcha = txtCaptcha.Text.Trim();
-            string newPassword = txtNewPassword.Text.Trim();
-
-            // 检查用户名、邮箱和新密码是否都已填写
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(captcha))
+            if (Page.IsValid)
             {
-                lblMsg.Text = "用户名、邮箱、新密码和验证码都不能为空。";
-                return;
+                
+                    if(!customerSrv.CheckUserExistence(txtName.Text.Trim(), txtEmail.Text.Trim()))
+                    {
+                        lblMsg.Text = "用户不存在,请检查用户名或邮箱！";
+                    }
+                    else
+                    {
+                        customerSrv.ResetPassword(txtName.Text.Trim());
+                        EmailSender emailSender = new EmailSender(txtEmail.Text.Trim(), txtName.Text.Trim());
+                        emailSender.Send();
+                        lblMsg.Text = "密码已发送到邮箱！";
+                    }
             }
+            //string username = txtName.Text.Trim();
+            //string email = txtEmail.Text.Trim();
 
-            // 验证验证码是否正确
-            if (captcha != "666")
-            {
-                lblMsg.Text = "验证码不正确。";
-                return;
-            }
+            //// 检查用户名、邮箱和新密码是否都已填写
+            //if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(captcha))
+            //{
+            //    lblMsg.Text = "用户名、邮箱、新密码和验证码都不能为空。";
+            //    return;
+            //}
 
-            // 验证用户是否存在
-            bool userExists = customerBLL.CheckUserExistence(username, email);
+            //// 验证验证码是否正确
+            //if (captcha != "666")
+            //{
+            //    lblMsg.Text = "验证码不正确。";
+            //    return;
+            //}
 
-            if (userExists)
-            {
-                // 用户存在，重置密码
-                bool resetSuccess = customerBLL.ResetPassword(username, email, newPassword);
+            //// 验证用户是否存在
+            //bool userExists = customerSrv.CheckUserExistence(username, email);
 
-                if (resetSuccess)
-                {
-                    lblMsg.Text = "密码重置成功。";
-                }
-                else
-                {
-                    lblMsg.Text = "密码重置失败。";
-                }
-            }
-            else
-            {
-                // 用户不存在
-                lblMsg.Text = "找不到该用户名和邮箱的组合。";
-            }
+            //if (userExists)
+            //{
+            //    // 用户存在，重置密码
+            //    bool resetSuccess = customerSrv.ResetPassword(username, email, newPassword);
+
+            //    if (resetSuccess)
+            //    {
+            //        lblMsg.Text = "密码重置成功。";
+            //    }
+            //    else
+            //    {
+            //        lblMsg.Text = "密码重置失败。";
+            //    }
+            //}
+            //else
+            //{
+            //    // 用户不存在
+            //    lblMsg.Text = "找不到该用户名和邮箱的组合。";
+            //}
         }
     
 
