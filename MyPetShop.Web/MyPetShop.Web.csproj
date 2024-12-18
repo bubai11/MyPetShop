@@ -134,6 +134,9 @@
     <Content Include="Images\mouseOver.jpg" />
     <Content Include="Images\pet-shop.png" />
     <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Pages\ProShow.aspx" />
+    <Content Include="Pages\Search.aspx" />
     <Content Include="Prod_Images\Backyard\cat.gif" />
     <Content Include="Prod_Images\Backyard\zebra.gif" />
     <Content Include="Prod_Images\Birds\domestic.gif" />
@@ -232,7 +235,6 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="Controls\SiteNavigation.ascx" />
     <Content Include="Sql\MyPetShop.sql" />
     <Content Include="Styles\Exterior.css" />
     <Content Include="Controls\AutoShow.ascx" />
@@ -252,7 +254,7 @@
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
-    <Content Include="Web.sitemap" />
+    <Content Include="App_Data\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\ManageOrders.aspx.cs">
@@ -326,12 +328,33 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.master.cs">
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MasterPage.master.designer.cs">
       <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProShow.aspx.cs">
+      <DependentUpon>ProShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ProShow.aspx.designer.cs">
+      <DependentUpon>ProShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
@@ -355,13 +378,6 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SiteNavigation.ascx.cs">
-      <DependentUpon>SiteNavigation.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\SiteNavigation.ascx.designer.cs">
-      <DependentUpon>SiteNavigation.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Controls\AutoShow.ascx.cs">
       <DependentUpon>AutoShow.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -382,7 +398,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="App_LocalResources\" />
     <Folder Include="Prod_Images\Fish1\" />
     <Folder Include="UserControl\" />

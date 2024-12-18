@@ -13,7 +13,7 @@ namespace MyPetShop.Web.Controls
         {
             if (!IsPostBack)
             {
-                if (lblStatus == null)
+                if (Label1 == null)
                 {
                     throw new NullReferenceException("控件 lblStatus 未正确加载，请检查 UserStatus.ascx 文件中的定义！");
                 }
@@ -59,6 +59,5 @@ namespace MyPetShop.Web.Controls
                 lnkAction3.Visible = true; // 显示第三个链接
             }
         }
-    }
     }
 }
