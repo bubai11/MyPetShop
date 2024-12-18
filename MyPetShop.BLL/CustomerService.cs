@@ -35,28 +35,17 @@ namespace MyPetShop.BLL
             // 2. 调用数据访问层方法插入新用户
             return customerDAL.RegisterCustomer(name, email, password);
         }
+        // 检查用户是否存在
+        public bool CheckUserExistence(string username, string email)
+        {
+            return customerDAL.GetCustomerByEmail(username, email) != null;
+        }
+
+        // 重置密码业务逻辑
+        public bool ResetPassword(string username, string email, string newPassword)
+        {
+            return customerDAL.UpdateCustomerPassword(username, email, newPassword);
+        }
     }
 
-    // 登录验证方法
-    //public bool Login(string name, string password, out DataRow userData)
-    //{
-    //    DataTable dt = customerDAL.Login(name, password);
-    //    if (dt.Rows.Count > 0)
-    //    {
-    //        userData = dt.Rows[0]; // 获取用户数据
-    //        return true; // 登录成功
-    //    }
-    //    else
-    //    {
-    //        userData = null;
-    //        return false; // 登录失败
-    //    }
-    //}
-
-    //// 用户注册方法
-    //public bool Register(string name, string password, string email)
-    //{
-    //    return customerDAL.Register(name, password, email);
-    //}
-    //}
 }
