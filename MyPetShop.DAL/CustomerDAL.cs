@@ -123,9 +123,83 @@ namespace MyPetShop.DAL
                 return false;
             }
         }
-    }
+    
+     // 通过邮箱获取用户信息
+        public Customer GetCustomerByEmail(string username, string email)
+        {
+            try
+            {
+                Customer customer = null;
 
-}
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // 查询用户的详细信息
+                    string sql = "SELECT CustomerId, Name, Email FROM Customer WHERE Name = @Name AND Email = @Email";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = username;
+                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
+
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    System.Diagnostics.Debug.WriteLine("查询结果：" + reader.HasRows);
+                    if (reader.Read())
+                    {
+                        // 如果查询到用户信息，则构造 Customer 对象
+                        customer = new Customer
+                        {
+                            CustomerId = (int)reader["CustomerId"],
+                            Name = reader["Name"].ToString(),
+                            Email = reader["Email"].ToString()
+                        };
+                    }
+
+                    reader.Close();
+                }
+
+                return customer; // 返回查询结果
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine("SQL 异常：" + sqlEx.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("其他异常：" + ex.Message);
+                return null;
+            }
+        }
+        // 更新用户密码
+        public bool UpdateCustomerPassword(string username, string email, string newPassword)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string sql = "UPDATE Customer SET Password = @Password WHERE Name = @Name AND Email = @Email";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = username;
+                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
+                    cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = newPassword;
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine("SQL 异常：" + sqlEx.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("其他异常：" + ex.Message);
+                return false;
+            }
+        }
+    }
+} 
 
 
 // 用户注册
