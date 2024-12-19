@@ -20,15 +20,20 @@ namespace MyPetShop.BLL
         }
 
         // 删除购物车商品
+        //public bool DeleteProductFromCart(int customerId, int productId)
+        //{
+        //    return cartItemDAL.DeleteProductFromCart(customerId, productId);
+        //}
+        //删除购物车中的商品
         public bool DeleteProductFromCart(int cartItemId)
         {
             return cartItemDAL.DeleteCartItem(cartItemId);
         }
 
         // 修改购物车中商品的数量
-        public bool UpdateProductQuantity(int cartItemId, int qty)
+        public bool UpdateProductQuantity(int customerId, int proId, int qty)
         {
-            return cartItemDAL.UpdateCartItemQuantity(cartItemId, qty);
+            return   cartItemDAL.UpdateCartItemQuantity(customerId, proId, qty);
         }
 
         // 清空购物车

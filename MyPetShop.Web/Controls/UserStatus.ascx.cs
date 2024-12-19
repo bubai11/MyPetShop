@@ -53,7 +53,7 @@ namespace MyPetShop.Web.Controls
                 lnkAction1.Text = "修改密码";
                 lnkAction1.NavigateUrl = "~/ChangePassword.aspx";
                 lnkAction2.Text = "购物记录";
-                lnkAction2.NavigateUrl = "~/OrderHistory.aspx";
+                lnkAction2.NavigateUrl = "~/OrderList.aspx";
                 lnkAction3.Text = "退出登录";
                 lnkAction3.NavigateUrl = "~/Logout.aspx";
                 lnkAction3.Visible = true; // 显示第三个链接

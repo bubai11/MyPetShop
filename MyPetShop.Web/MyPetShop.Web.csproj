@@ -138,6 +138,7 @@
     <Content Include="Images\pet-shop.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="Pages\OrderList.aspx" />
     <Content Include="Pages\ProShow.aspx" />
     <Content Include="Pages\search.aspx" />
     <Content Include="Pages\ShopCart.aspx" />
@@ -367,6 +368,13 @@
     </Compile>
     <Compile Include="MasterPage.master.designer.cs">
       <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProShow.aspx.cs">
       <DependentUpon>ProShow.aspx</DependentUpon>

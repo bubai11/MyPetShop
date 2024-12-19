@@ -33,13 +33,13 @@ namespace MyPetShop
         protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// btnUpdate 控件。
+        /// lblError 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
+        protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
         /// btnClear 控件。
@@ -60,12 +60,21 @@ namespace MyPetShop
         protected global::System.Web.UI.WebControls.Button btnCheckout;
 
         /// <summary>
-        /// lblMessage 控件。
+        /// lblTotalPrice 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Label lblTotalPrice;
+
+        /// <summary>
+        /// lblCart 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCart;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MyPetShop.BLL;
+using MyPetShop.DAL;
 using System;
 using System.Data;
 using System.Web.UI.WebControls;
@@ -7,45 +8,85 @@ namespace MyPetShop
 {
     public partial class ShopCart : System.Web.UI.Page
     {
-        private const string CartSessionKey = "CartTotal";
+        //private const string CartSessionKey = "CartTotal";
         private CartItemService cartItemSrv = new CartItemService();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindCart();
+                int customerId = GetCustomerIdFromSession();
+                BindCart(customerId);
             }
         }
-
-        private void BindCart()
+        //获取当前用户的 ID
+        private int GetCustomerIdFromSession()
         {
-            DataTable cartItems = cartItemSrv.GetCart(Session["CustomerId"] as int? ?? 0);
-            GridView1.DataSource = cartItems;
-            GridView1.DataBind();
-
-            // Calculate and store the total in session
-            decimal total = cartItemSrv.CalculateTotal(Session["CustomerId"] as int? ?? 0);
-            Session[CartSessionKey] = total;
-            lblMessage.Text = $"购物车总额: {total:C2}";
+            // 示例：从 Session 中获取 CustomerId
+            return Convert.ToInt32(Session["CustomerId"]);
         }
 
+        private void BindCart(int customerId)
+        {
+            DataTable cartItems = cartItemSrv.GetCart(customerId);
+            if (cartItems != null && cartItems.Rows.Count > 0)
+            {
+                //Console.WriteLine("购物车商品：");
+                //foreach (DataRow row in cartItems.Rows)
+                //{
+                //    Console.WriteLine($"商品ID: {row["ProId"]}, 商品名称: {row["ProName"]}, 价格: {row["ListPrice"]}, 数量: {row["Qty"]}");
+                //}
+                GridView1.DataSource = cartItems;
+                GridView1.DataBind();
+                decimal total = cartItemSrv.CalculateTotal(Session["CustomerId"] as int? ?? 0);
+                //Session[CartSessionKey] = total;
+                lblTotalPrice.Text = $"总价: {total:C2}";
+            }
+            else
+            {
+                GridView1.DataSource = null;
+                GridView1.DataBind();
+                Console.WriteLine("购物车为空或获取失败！");
+            }
+        }
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Select")
-            {
-                // Get the product ID from the command argument
-                int cartItemId = Convert.ToInt32(e.CommandArgument);
+            int customerId = GetCustomerIdFromSession();
 
-                // Call the method to update the quantity
-                // This should be done through a text box and update button for each item
-                // For simplicity, we assume the quantity is updated through another method (not shown)
-            }
-            else if (e.CommandName == "Delete")
+            if (e.CommandName == "Select") // 选择操作
             {
-                int cartItemId = Convert.ToInt32(e.CommandArgument);
-                cartItemSrv.DeleteProductFromCart(cartItemId);
-                BindCart();
+                // 获取行索引
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridView1.Rows[rowIndex];
+
+                // 获取 ProId 和数量
+                int proId = Convert.ToInt32(GridView1.DataKeys[rowIndex].Values["ProId"]);
+                int qty = Convert.ToInt32(((TextBox)row.FindControl("txtQty")).Text);
+
+                // 展示选择的商品信息
+                lblCart.Text = $"已选择商品 ID: {proId}，数量: {qty}";
+            }
+            else if (e.CommandName == "Delete") // 删除操作
+            {
+                // 获取行索引
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                int cartItemId = Convert.ToInt32(GridView1.DataKeys[rowIndex].Values["CartItemId"]);
+
+                // 调用删除商品方法
+                CartItemService cartItemSrv = new CartItemService();
+                bool isDeleted = cartItemSrv.DeleteProductFromCart(cartItemId);
+
+                if (isDeleted)
+                {
+                    lblCart.Text = "商品已成功删除！";
+                }
+                else
+                {
+                    lblCart.Text = "删除商品失败！";
+                }
+
+                // 重新绑定购物车
+                BindCart(customerId);
             }
         }
 
@@ -60,22 +101,41 @@ namespace MyPetShop
                 // 获取 DataItem
                 var dataItem = row.DataItem;
                 // 假设 DataItem 是 DataRowView 类型，使用索引访问器来获取列值
-                int cartItemId = Convert.ToInt32(((DataRowView)dataItem)["CartItemId"]);
+                int customerId = Convert.ToInt32(((DataRowView)dataItem)["CustomerId"]);
+                int proId=Convert.ToInt32(((DataRowView)dataItem)["ProId"]);
                 int qty = Convert.ToInt32(txtQty.Text);
 
-                cartItemSrv.UpdateProductQuantity(cartItemId, qty);
-                BindCart();
+                bool isUpdated=cartItemSrv.UpdateProductQuantity( customerId,  proId,  qty);
+                if (isUpdated)
+                {
+                    Console.WriteLine("购物车商品数量更新成功！");
+                }
+                else
+                {
+                    Console.WriteLine("购物车商品数量更新失败！");
+                }
+                BindCart(customerId);
             }
         }
 
-        protected void btnUpdate_Click(object sender, EventArgs e)
-        {
-            BindCart();
-        }
+        //protected void btnUpdate_Click(object sender, EventArgs e)
+        //{
+        //    BindCart();
+        //}
 
+
+        // 清空购物车按钮点击事件
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            cartItemSrv.ClearCart(Session["CustomerId"] as int? ?? 0);
+            bool isCleared= cartItemSrv.ClearCart(Session["CustomerId"] as int? ?? 0);
+            if (isCleared)
+            {
+                Console.WriteLine("购物车已清空！");
+            }
+            else
+            {
+                Console.WriteLine("购物车为空，未做任何操作！");
+            }
             Response.Redirect("Default.aspx");
         }
 
@@ -86,5 +146,22 @@ namespace MyPetShop
             // For simplicity, we just redirect to a placeholder page
             Response.Redirect("SubmitCart.aspx");
         }
+        ////删除所选的商品
+        //protected void btnDeleteSelected_Click(object sender, EventArgs e)
+        //{
+        //    int customerId = GetCustomerIdFromSession();
+        //    foreach (GridViewRow row in GridView1.Rows)
+        //    {
+        //        CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+        //        if (chkSelect != null && chkSelect.Checked)
+        //        {
+        //            // 获取商品 ID
+        //            int proId = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
+        //            cartItemSrv.DeleteProductFromCart(customerId, proId);
+        //        }
+        //    }
+        //    // 重新绑定购物车
+        //    BindCart(Session["CustomerId"] as int? ?? 0);
+        //}
     }
 }
