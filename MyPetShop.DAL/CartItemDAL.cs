@@ -30,8 +30,8 @@ namespace MyPetShop.DAL
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string sql = "INSERT INTO CartItem (CustomerId, ProId, ProName, ListPrice, Qty) VALUES (@CustomerId, @ProId, @ProName, @ListPrice, @Qty)";
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                string usingsql = "INSERT INTO CartItem (CustomerId, ProId, ProName, ListPrice, Qty) VALUES (@CustomerId, @ProId, @ProName, @ListPrice, @Qty)";
+                SqlCommand cmd = new SqlCommand(usingsql, conn);
                 cmd.Parameters.AddWithValue("@CustomerId", customerId);
                 cmd.Parameters.AddWithValue("@ProId", proId);
                 cmd.Parameters.AddWithValue("@ProName", proName);

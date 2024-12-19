@@ -138,9 +138,11 @@
     <Content Include="Images\pet-shop.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="Pages\OrderList.aspx" />
     <Content Include="Pages\ProShow.aspx" />
     <Content Include="Pages\search.aspx" />
     <Content Include="Pages\ShopCart.aspx" />
+    <Content Include="Pages\SubmitCart.aspx" />
     <Content Include="Prod_Images\Backyard\cat.gif" />
     <Content Include="Prod_Images\Backyard\zebra.gif" />
     <Content Include="Prod_Images\Birds\domestic.gif" />
@@ -368,6 +370,13 @@
     <Compile Include="MasterPage.master.designer.cs">
       <DependentUpon>MasterPage.master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ProShow.aspx.cs">
       <DependentUpon>ProShow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -388,6 +397,13 @@
     </Compile>
     <Compile Include="Pages\ShopCart.aspx.designer.cs">
       <DependentUpon>ShopCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SubmitCart.aspx.cs">
+      <DependentUpon>SubmitCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SubmitCart.aspx.designer.cs">
+      <DependentUpon>SubmitCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">

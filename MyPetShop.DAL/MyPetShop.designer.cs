@@ -39,9 +39,9 @@ namespace MyPetShop.DAL
     partial void InsertCustomer(Customer instance);
     partial void UpdateCustomer(Customer instance);
     partial void DeleteCustomer(Customer instance);
-    partial void InsertOrder(Order instance);
-    partial void UpdateOrder(Order instance);
-    partial void DeleteOrder(Order instance);
+    partial void InsertOrder(OrderDAL instance);
+    partial void UpdateOrder(OrderDAL instance);
+    partial void DeleteOrder(OrderDAL instance);
     partial void InsertOrderItem(OrderItem instance);
     partial void UpdateOrderItem(OrderItem instance);
     partial void DeleteOrderItem(OrderItem instance);
@@ -107,11 +107,11 @@ namespace MyPetShop.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Order> Order
+		public System.Data.Linq.Table<OrderDAL> Order
 		{
 			get
 			{
-				return this.GetTable<Order>();
+				return this.GetTable<OrderDAL>();
 			}
 		}
 		
@@ -558,7 +558,7 @@ namespace MyPetShop.DAL
 		
 		private EntitySet<CartItem> _CartItem;
 		
-		private EntitySet<Order> _Order;
+		private EntitySet<OrderDAL> _Order;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -577,7 +577,7 @@ namespace MyPetShop.DAL
 		public Customer()
 		{
 			this._CartItem = new EntitySet<CartItem>(new Action<CartItem>(this.attach_CartItem), new Action<CartItem>(this.detach_CartItem));
-			this._Order = new EntitySet<Order>(new Action<Order>(this.attach_Order), new Action<Order>(this.detach_Order));
+			this._Order = new EntitySet<OrderDAL>(new Action<OrderDAL>(this.attach_Order), new Action<OrderDAL>(this.detach_Order));
 			OnCreated();
 		}
 		
@@ -675,7 +675,7 @@ namespace MyPetShop.DAL
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Customer_Order", Storage="_Order", ThisKey="CustomerId", OtherKey="CustomerId")]
-		public EntitySet<Order> Order
+		public EntitySet<OrderDAL> Order
 		{
 			get
 			{
@@ -719,13 +719,13 @@ namespace MyPetShop.DAL
 			entity.Customer = null;
 		}
 		
-		private void attach_Order(Order entity)
+		private void attach_Order(OrderDAL entity)
 		{
 			this.SendPropertyChanging();
 			entity.Customer = this;
 		}
 		
-		private void detach_Order(Order entity)
+		private void detach_Order(OrderDAL entity)
 		{
 			this.SendPropertyChanging();
 			entity.Customer = null;
@@ -733,7 +733,7 @@ namespace MyPetShop.DAL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
-	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class OrderDAL : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -792,7 +792,7 @@ namespace MyPetShop.DAL
     partial void OnStatusChanged();
     #endregion
 		
-		public Order()
+		public OrderDAL()
 		{
 			this._OrderItem = new EntitySet<OrderItem>(new Action<OrderItem>(this.attach_OrderItem), new Action<OrderItem>(this.detach_OrderItem));
 			this._Customer = default(EntityRef<Customer>);
@@ -1121,7 +1121,7 @@ namespace MyPetShop.DAL
 		
 		private System.Nullable<decimal> _TotalPrice;
 		
-		private EntityRef<Order> _Order;
+		private EntityRef<OrderDAL> _Order;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -1143,7 +1143,7 @@ namespace MyPetShop.DAL
 		
 		public OrderItem()
 		{
-			this._Order = default(EntityRef<Order>);
+			this._Order = default(EntityRef<OrderDAL>);
 			OnCreated();
 		}
 		
@@ -1272,7 +1272,7 @@ namespace MyPetShop.DAL
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderItem", Storage="_Order", ThisKey="OrderId", OtherKey="OrderId", IsForeignKey=true)]
-		public Order Order
+		public OrderDAL Order
 		{
 			get
 			{
@@ -1280,7 +1280,7 @@ namespace MyPetShop.DAL
 			}
 			set
 			{
-				Order previousValue = this._Order.Entity;
+				OrderDAL previousValue = this._Order.Entity;
 				if (((previousValue != value) 
 							|| (this._Order.HasLoadedOrAssignedValue == false)))
 				{

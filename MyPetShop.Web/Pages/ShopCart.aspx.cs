@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Web.UI.WebControls;
 
-namespace MyPetShop
+namespace MyPetShop.Web.Pages
 {
     public partial class ShopCart : System.Web.UI.Page
     {
