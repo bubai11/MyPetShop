@@ -147,14 +147,6 @@
     </style>
 </head>  
 <body>
-    <!-- 顶部导航栏 -->
-    <!--<div class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="Default.aspx">
-            <img src="<%= ResolveUrl("~/Images/pet-shop.png") %>" alt="MyPetShop Logo" style="height: 40px;">
-        </a>
-    </div>
-
-    <div class="container mt-4">  
         <!-- 搜索框 -->
     <form id="form1" runat="server">
     <div class="index">
@@ -166,10 +158,10 @@
                 </a>
                 
 
-        <!-- 显示用户状态控件 -->
-        <div class="text-right">
-            <uc1:UserStatus ID="UserStatus" runat="server" />
-        </div></div>
+                <!-- 显示用户状态控件 -->
+                <div class="text-right">
+                    <uc1:UserStatus ID="UserStatus" runat="server" />
+                </div>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -183,6 +175,7 @@
                         </li>
                     </ul>
                 </div>
+            </div>
             </div>
         </nav>
         <div class="banner">
@@ -210,7 +203,8 @@
     <!-- 页脚 -->
     <footer class="text-center mt-4 footer">
         <p>&copy; 2024 MyPetShop. All Rights Reserved.</p>
-    </footer></div></div>
+    </footer>
+    </div>
         
     </form>
     <!-- 引入 Bootstrap JS -->

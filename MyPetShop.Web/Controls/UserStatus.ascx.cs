@@ -26,7 +26,7 @@ namespace MyPetShop.Web.Controls
         private void UpdateStatus()
         {
             // 获取 Session 信息
-            var username = HttpContext.Current.Session["Username"] as string;
+            var username = HttpContext.Current.Session["UserName"] as string;
             var isAdmin = HttpContext.Current.Session["IsAdmin"] != null && (bool)HttpContext.Current.Session["IsAdmin"];
 
             if (string.IsNullOrEmpty(username)) // 未登录状态

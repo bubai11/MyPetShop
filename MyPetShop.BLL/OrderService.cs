@@ -16,12 +16,23 @@ namespace MyPetShop.BLL
             return orderDAL.GetOrdersByCustomerId(customerId);
         }
 
-        public string SubmitOrder(int customerId, string userName, string addr1, string addr2, string city, string state, string zip, string phone)
+        // 提交订单
+        public bool SubmitOrder(int customerId, string userName, string addr1, string addr2, string city, string state, string zip, string phone)
         {
-            string orderStatus = orderDAL.SaveOrder(customerId, userName, addr1, addr2, city, state, zip, phone);
+            try
+            {
+                // 调用 OrderDAL 保存订单
+                string orderStatus = orderDAL.SaveOrder(customerId, userName, addr1, addr2, city, state, zip, phone);
 
-            return orderStatus;
+                // 如果订单状态为 "Pending"，表示订单创建成功
+                return orderStatus == "Pending";
+            }
+            catch (Exception ex)
+            {
+                // 处理异常
+                throw new Exception("订单提交失败: " + ex.Message, ex);
+            }
         }
-
     }
+
 }

@@ -25,9 +25,9 @@ namespace MyPetShop.Web
             {
                 if (Page.IsValid)
                 {
-                    if (customerSrv.CheckUserExistence(Session["Username"].ToString(), txtOldPwd.Text))
+                    if (customerSrv.CheckUserExistence(Session["UserName"].ToString(), txtOldPwd.Text))
                     {
-                        customerSrv.ChangePassword(Session["Username"].ToString(),txtPwd.Text);
+                        customerSrv.ChangePassword(Session["UserName"].ToString(),txtPwd.Text);
                         lblMsg.Text = "密码修改成功!";
                     }
                     else // 输入的原密码不正确

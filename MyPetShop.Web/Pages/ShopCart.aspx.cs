@@ -38,7 +38,7 @@ namespace MyPetShop.Web.Pages
             {
                 GridView1.DataSource = cartItems;
                 GridView1.DataBind();
-                decimal total = cartItemSrv.CalculateTotal(Session["CustomerId"] as int? ?? 0);
+                decimal total = cartItemSrv.CalculateTotal(customerId);
                 //Session[CartSessionKey] = total;
                 lblTotalPrice.Text = $"总价: {total:C2}";
             }
@@ -51,44 +51,41 @@ namespace MyPetShop.Web.Pages
         }
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int customerId = Convert.ToInt32(HttpContext.Current.Session["CustomerId"]);
-
             if (e.CommandName == "Select") // 选择操作
             {
-                // 获取行索引
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridView1.Rows[rowIndex];
 
-                // 获取 ProId 和数量
                 int proId = Convert.ToInt32(GridView1.DataKeys[rowIndex].Values["ProId"]);
                 int qty = Convert.ToInt32(((TextBox)row.FindControl("txtQty")).Text);
 
-                // 展示选择的商品信息
                 lblCart.Text = $"已选择商品 ID: {proId}，数量: {qty}";
             }
-            else if (e.CommandName == "Delete") // 删除操作
-            {
-                // 获取行索引
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                int cartItemId = Convert.ToInt32(GridView1.DataKeys[rowIndex].Values["CartItemId"]);
-
-                // 调用删除商品方法
-                CartItemService cartItemSrv = new CartItemService();
-                bool isDeleted = cartItemSrv.DeleteProductFromCart(cartItemId);
-
-                if (isDeleted)
-                {
-                    lblCart.Text = "商品已成功删除！";
-                }
-                else
-                {
-                    lblCart.Text = "删除商品失败！";
-                }
-
-                // 重新绑定购物车
-                BindCart(customerId);
-            }
         }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            // 获取 CartItemId
+            int cartItemId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values["CartItemId"]);
+
+            // 调用删除商品方法
+            CartItemService cartItemSrv = new CartItemService();
+            bool isDeleted = cartItemSrv.DeleteProductFromCart(cartItemId);
+
+            if (isDeleted)
+            {
+                lblCart.Text = "商品已成功删除！";
+            }
+            else
+            {
+                lblCart.Text = "删除商品失败！";
+            }
+
+            // 重新绑定购物车
+            int customerId = Convert.ToInt32(HttpContext.Current.Session["CustomerId"]);
+            BindCart(customerId);
+        }
+
 
         protected void txtQty_TextChanged(object sender, EventArgs e)
         {
@@ -136,7 +133,7 @@ namespace MyPetShop.Web.Pages
             {
                 Console.WriteLine("购物车为空，未做任何操作！");
             }
-            Response.Redirect("Default.aspx");
+            Response.Redirect(ResolveUrl("~/Default.aspx"));
         }
 
         protected void btnCheckout_Click(object sender, EventArgs e)
@@ -144,7 +141,7 @@ namespace MyPetShop.Web.Pages
             // Redirect to checkout page
             // This should be handled by the checkout process
             // For simplicity, we just redirect to a placeholder page
-            Response.Redirect("SubmitCart.aspx");
+            Response.Redirect(ResolveUrl("~/Pages/SubmitCart.aspx"));
         }
         ////删除所选的商品
         //protected void btnDeleteSelected_Click(object sender, EventArgs e)
