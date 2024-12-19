@@ -137,7 +137,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Pages\ProShow.aspx" />
-    <Content Include="Pages\Search.aspx" />
+    <Content Include="Pages\search.aspx" />
+    <Content Include="Pages\ShopCart.aspx" />
     <Content Include="Prod_Images\Backyard\cat.gif" />
     <Content Include="Prod_Images\Backyard\zebra.gif" />
     <Content Include="Prod_Images\Birds\domestic.gif" />
@@ -358,12 +359,19 @@
     <Compile Include="Pages\ProShow.aspx.designer.cs">
       <DependentUpon>ProShow.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Search.aspx.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
+    <Compile Include="Pages\search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Search.aspx.designer.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
+    <Compile Include="Pages\search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShopCart.aspx.cs">
+      <DependentUpon>ShopCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ShopCart.aspx.designer.cs">
+      <DependentUpon>ShopCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">

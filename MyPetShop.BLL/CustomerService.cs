@@ -55,7 +55,8 @@ namespace MyPetShop.BLL
 
         public void ChangePassword(string username,string password) {
             customerDAL.UpdateCustomerPassword(username, password);
-        } 
+        }
+        
     }
-
 }
+

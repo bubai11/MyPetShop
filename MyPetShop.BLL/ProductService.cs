@@ -20,5 +20,6 @@ namespace MyPetShop.BLL
             return productDAL.SearchProducts(searchQuery);
 
         }
+        
     }
 }
