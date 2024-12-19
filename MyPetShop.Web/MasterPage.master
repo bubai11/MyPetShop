@@ -210,7 +210,7 @@
     <!-- 页脚 -->
     <footer class="text-center mt-4 footer">
         <p>&copy; 2024 MyPetShop. All Rights Reserved.</p>
-    </footer></div></div>
+    </footer></div>
         
     </form>
     <!-- 引入 Bootstrap JS -->

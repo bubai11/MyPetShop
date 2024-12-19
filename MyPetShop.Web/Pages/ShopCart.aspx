@@ -13,7 +13,6 @@
                             <asp:TextBox ID="txtQty" runat="server" Text='<%# Bind("Qty") %>' Width="50px" OnTextChanged="txtQty_TextChanged" AutoPostBack="true"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="TotalPrice" HeaderText="小计" DataFormatString="{0:C2}" />
                     <asp:TemplateField HeaderText="操作">
                         <ItemTemplate>
                             <asp:Button ID="btnSelect" runat="server" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" Text="选择" />
