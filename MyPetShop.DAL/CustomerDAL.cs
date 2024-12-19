@@ -14,8 +14,6 @@ namespace MyPetShop.DAL
     public class CustomerDAL
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["MyPetShopConnectionString"].ConnectionString;
-        //private readonly string connectionString = "Server=localhost;Database=MyPetShop;User Id=sa;Password=123;";
-
         // 登录验证方法
         public Customer GetCustomerByCredentials(string username, string password)
         {
@@ -199,6 +197,7 @@ namespace MyPetShop.DAL
                 return false;
             }
         }
+       
     }
 } 
 

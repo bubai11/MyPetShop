@@ -64,6 +64,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="app.config" />
     <None Include="MyPetShop.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

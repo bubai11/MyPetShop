@@ -1,15 +1,19 @@
 ﻿using System;
-using System.Configuration;
-using System.Data;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration;
 
 namespace MyPetShop.DAL
 {
     public class CartItemDAL
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["MyPetShopConnectionString"].ConnectionString;
-        // 添加商品到购物车
-        public void AddToCart(int customerId, int productId, string productName, decimal listPrice, int quantity)
+
+        public bool InsertCartItem(int customerId, int proId, string proName, decimal listPrice, int qty)
         {
             string sql = @"
                 IF EXISTS (SELECT 1 FROM CartItem WHERE CustomerId = @CustomerId AND ProId = @ProductId)
@@ -26,66 +30,107 @@ namespace MyPetShop.DAL
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@CustomerId", customerId);
-                        cmd.Parameters.AddWithValue("@ProductId", productId);
-                        cmd.Parameters.AddWithValue("@ProductName", productName);
-                        cmd.Parameters.AddWithValue("@ListPrice", listPrice);
-                        cmd.Parameters.AddWithValue("@Quantity", quantity);
+                string sql = "INSERT INTO CartItem (CustomerId, ProId, ProName, ListPrice, Qty) VALUES (@CustomerId, @ProId, @ProName, @ListPrice, @Qty)";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@CustomerId", customerId);
+                cmd.Parameters.AddWithValue("@ProId", proId);
+                cmd.Parameters.AddWithValue("@ProName", proName);
+                cmd.Parameters.AddWithValue("@ListPrice", listPrice);
+                cmd.Parameters.AddWithValue("@Qty", qty);
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // 处理异常
-                    throw new ApplicationException("添加到购物车失败: " + ex.Message);
-                }
+                conn.Open();
+                int result = cmd.ExecuteNonQuery();
+                return result > 0;
             }
         }
 
-        // 获取购物车商品列表
-        public DataTable GetCartItems(int customerId)
+        // 删除购物车商品
+        public bool DeleteCartItem(int cartItemId)
         {
-            DataTable dataTable = new DataTable();
-            string sql = @"
-                SELECT 
-                    CartItemId, 
-                    ProId, 
-                    ProName, 
-                    ListPrice, 
-                    Qty, 
-                    (ListPrice * Qty) AS TotalPrice
-                FROM CartItem
-                WHERE CustomerId = @CustomerId";
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@CustomerId", customerId);
+                string sql = "DELETE FROM CartItem WHERE CartItemId = @CartItemId";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@CartItemId", cartItemId);
 
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                        {
-                            adapter.Fill(dataTable);
-                        }
-                    }
-                }
-                catch (Exception ex)
+                conn.Open();
+                int result = cmd.ExecuteNonQuery();
+                return result > 0;
+            }
+        }
+
+        // 更新购物车中商品的数量
+        public bool UpdateCartItemQuantity(int cartItemId, int qty)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string sql = "UPDATE CartItem SET Qty = @Qty WHERE CartItemId = @CartItemId";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@CartItemId", cartItemId);
+                cmd.Parameters.AddWithValue("@Qty", qty);
+
+                conn.Open();
+                int result = cmd.ExecuteNonQuery();
+                return result > 0;
+            }
+        }
+
+        // 清空购物车
+        public bool ClearCartItems(int customerId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string sql = "DELETE FROM CartItem WHERE CustomerId = @CustomerId";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@CustomerId", customerId);
+
+                conn.Open();
+                int result = cmd.ExecuteNonQuery();
+                return result > 0;
+            }
+        }
+
+        // 获取购物车中所有商品
+        public DataTable GetCartItems(int customerId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    // 处理异常
-                    throw new ApplicationException("获取购物车数据失败: " + ex.Message);
+                    string sql = "SELECT CartItemId, ProId, ProName, ListPrice, Qty FROM CartItem WHERE CustomerId = @CustomerId";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@CustomerId", customerId);
+
+                    conn.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                    DataTable resultTable = new DataTable();
+                    adapter.Fill(resultTable);
+
+                    return resultTable;
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("获取购物车商品时出错：" + ex.Message);
+                return null;
+            }
+        }
 
-            return dataTable;
+        // 计算购物车总价
+        public decimal CalculateCartTotal(int customerId)
+        {
+            decimal total = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string sql = "SELECT SUM(ListPrice * Qty) FROM CartItem WHERE CustomerId = @CustomerId";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@CustomerId", customerId);
+
+                conn.Open();
+                total = (decimal)cmd.ExecuteScalar();
+            }
+            return total;
         }
     }
 }
