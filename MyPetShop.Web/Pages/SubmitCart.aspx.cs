@@ -10,15 +10,15 @@ namespace MyPetShop.Web.Pages
 {
     public partial class SubmitCart : System.Web.UI.Page
     {
-        private readonly CartService cartSrv = new CartService();
+        private readonly OrderService orderService = new OrderService();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                if ((string)Session["UserName"]==null)
+                if (HttpContext.Current.Session["Username"] == null)
                 {
                     // 用户未登录，重定向到登录页面
-                    Response.Redirect("Login.aspx");
+                    Response.Redirect("../Login.aspx");
                 }
             }
         }
@@ -39,7 +39,7 @@ namespace MyPetShop.Web.Pages
                     int customerId=Convert.ToInt32(Session["CustomerId"]);
                     string userName= (string)Session["UserName"];
                     // 调用业务逻辑服务提交订单
-                    string orderStatus = cartSrv.SubmitOrder(customerId,userName,addr1,addr2, city, state, zip, phone);
+                    string orderStatus = orderService.SubmitOrder(customerId,userName,addr1,addr2, city, state, zip, phone);
 
                     // 显示订单状态
                     OrderStatusLabel.Text = "订单状态: " + orderStatus;

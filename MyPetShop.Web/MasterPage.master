@@ -1,11 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="MyPetShop.Web.MasterPage" %>  
-<%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions" %>
 <%@ Register Src="~/Controls/UserStatus.ascx" TagPrefix="uc1" TagName="UserStatus" %>
-<%@ Register src="~/Controls/SiteMap.ascx"TagPrefix="uc1" TagName="SiteMap" %>
-<%--<%@ Register TagPrefix="uc1" Namespace="MyPetShop.Web.Controls" Assembly="MyPetShop.Web" %>--%>
-
-
-
+<%@ Register Src="~/Controls/SiteMap.ascx" TagPrefix="uc1" TagName="SiteMap" %>
 
 <!DOCTYPE html>  
 <html lang="zh">  
@@ -14,15 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
     <title>MyPetShop - Master Page</title>  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />  
-    <%--<link rel="stylesheet" href="styles.css" />--%>  
-
-    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>  
     <style>
-        /*避免 ContentPlaceHolder1 被挤压,其始终固定在搜索框下方，不受后续内容区域的影响*/
+        /* 避免 ContentPlaceHolder1 被挤压 */
         #searchResultContainer {
             margin-top: 10px;
         }
-        /*//搜索结果区域设置边框样式*/
+        /* 搜索结果区域样式 */
         #searchResultContainer {
             margin-top: 10px;
             border: 1px solid #ddd;
@@ -39,50 +31,32 @@
         </a>
     </div>
 
-    <form id="form1" runat="server">
-        <div class="container mt-4">  
-            <!-- 搜索框 -->
-            <div class="row mb-3">  
-                <div class="col">  
-                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="请输入搜索关键词"></asp:TextBox>  
-                </div>  
-                <div class="col-auto">  
-                    <asp:Button ID="btnSearch" runat="server" Text="搜索" OnClick="BtnSearch_Click" CssClass="btn btn-primary" />  
-                </div>  
+    <div class="container mt-4">  
+        <!-- 搜索框 -->
+        <div class="row mb-3">  
+            <div class="col">  
+                <input id="txtSearch" type="text" class="form-control" placeholder="请输入搜索关键词" />  
             </div>  
+            <div class="col-auto">  
+                <button id="btnSearch" class="btn btn-primary" onclick="performSearch()">搜索</button>  
+            </div>  
+        </div>  
 
-            <!-- 搜索结果显示区域 -->
-            <div class="row mb-3" id="searchResultContainer" runat="server" style="display: none;">  
-                <div class="col">  
-                    <asp:GridView ID="gvSearchResults" runat="server" CssClass="table table-bordered mt-4" AutoGenerateColumns="False" Visible="false">  
-                        <Columns>  
-                            <asp:BoundField DataField="ProductId" HeaderText="商品编号" />  
-                            <asp:BoundField DataField="Name" HeaderText="商品名称" />  
-                            <asp:BoundField DataField="ListPrice" HeaderText="价格" DataFormatString="{0:C}" />  
-                            <asp:BoundField DataField="Qty" HeaderText="库存" />  
-                            <asp:BoundField DataField="Descn" HeaderText="描述" />  
-                        </Columns>  
-                    </asp:GridView>  
-                    <asp:Label ID="lblMessage" runat="server" CssClass="text-danger mt-2"></asp:Label>  
-                </div>  
-            </div>
-            
-            <%--显示用户状态控件--%>
-            <div class="col-md-4 text-right">
-                <uc1:UserStatus ID="UserStatus" runat="server" />
-            </div>
-
-            <!-- Navigation -->
-            <div class="row bg-primary text-white py-2">
-                <div class="col">
-                    <uc1:SiteMap ID="SiteMap" runat="server" />
-                </div>
-            </div>
-
-            <!-- 子页面内容区域 -->
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>  
+        <!-- 显示用户状态控件 -->
+        <div class="col-md-4 text-right">
+            <uc1:UserStatus ID="UserStatus" runat="server" />
         </div>
-    </form>
+
+        <!-- Navigation -->
+        <div class="row bg-primary text-white py-2">
+            <div class="col">
+                <uc1:SiteMap ID="SiteMap" runat="server" />
+            </div>
+        </div>
+
+        <!-- 子页面内容区域 -->
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>  
+    </div>
 
     <!-- 页脚 -->
     <footer class="text-center mt-4">
@@ -91,5 +65,21 @@
     <!-- 引入 Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>  
+
+    <script>
+        // 搜索按钮点击事件
+        function performSearch() {
+            // 获取搜索框的值
+            const query = document.getElementById('txtSearch').value.trim();
+
+            // 判断输入是否为空
+            if (query) {
+                // 跳转到搜索页面并附加参数
+                window.location.href = `Pages/search.aspx?query=${encodeURIComponent(query)}`;
+            } else {
+                alert('请输入搜索关键词！');
+            }
+        }
+    </script>
 </body>  
 </html>

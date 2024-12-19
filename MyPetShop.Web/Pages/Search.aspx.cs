@@ -17,7 +17,7 @@ namespace MyPetShop.Web.Pages
             if (!IsPostBack)
             {
                 // 获取查询字符串中的搜索关键字
-                string searchQuery = Request.QueryString["search"];
+                string searchQuery = Request.QueryString["query"];
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     LoadSearchResults(searchQuery);
