@@ -8,7 +8,9 @@ namespace MyPetShop.DAL
 {
     public class ProductDAL
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["MyPetShopConnectionString"].ConnectionString;
+        private readonly string connectionString =
+            ConfigurationManager.ConnectionStrings["MyPetShopConnectionString"].ConnectionString;
+
         /// <summary>  
         /// 根据产品名称或描述搜索产品  
         /// </summary>  
@@ -42,6 +44,42 @@ namespace MyPetShop.DAL
                 Console.WriteLine("搜索商品时出错：" + ex.Message);
                 return null;
             }
+        }
+
+        // 获取热销商品的方法
+        public DataTable GetHotProducts()
+        {
+            DataTable dataTable = new DataTable();
+            string sql = @"
+                SELECT TOP 5 
+                    ProductId, 
+                    Name, 
+                    ListPrice, 
+                    Qty
+                FROM Product
+                ORDER BY Sales DESC"; // 假设有一个字段 Sales 表示销量
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // 处理异常（可以记录日志或抛出异常）
+                    throw new ApplicationException("获取热销商品失败: " + ex.Message);
+                }
+            }
+
+            return dataTable;
         }
     }
 }

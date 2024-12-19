@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace MyPetShop.Web.Controls
 {
-    public partial class NewProduct : System.Web.UI.UserControl
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+	public partial class NewProduct : System.Web.UI.UserControl
+	{
+		protected void Page_Load(object sender, EventArgs e)
+		{
 
-        }
-    }
+		}
+	}
 }

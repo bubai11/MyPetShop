@@ -12,7 +12,7 @@ namespace MyPetShop.Web
     {
         private string mailFormAddress = ConfigurationManager.AppSettings["MailFormAddress"];
         private bool userSsl = bool.Parse(ConfigurationManager.AppSettings["UseSsl"]);
-        private string userName = ConfigurationManager.AppSettings["Username"];
+        private string userName = ConfigurationManager.AppSettings["UserName"];
         private string password = ConfigurationManager.AppSettings["Password"];
         private string serverName = ConfigurationManager.AppSettings["ServerName"];
         private int serverPort = int.Parse(ConfigurationManager.AppSettings["ServerPort"]);

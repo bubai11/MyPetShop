@@ -178,7 +178,7 @@ namespace MyPetShop.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string sql = "UPDATE Customer SET Password = @Password WHERE Name = @Name AND Email = @Email";
+                    string sql = "UPDATE Customer SET Password = @Password WHERE Name = @Name";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = username;
                     cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = pwd;

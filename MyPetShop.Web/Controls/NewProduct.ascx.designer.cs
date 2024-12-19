@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyPetShop.Web.Controls
-{
-
-
-    public partial class NewProduct
-    {
+namespace MyPetShop.Web.Controls {
+    
+    
+    public partial class NewProduct {
     }
 }

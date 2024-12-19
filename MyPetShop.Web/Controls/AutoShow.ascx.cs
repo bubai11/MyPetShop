@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,6 +11,26 @@ namespace MyPetShop.Web.UserControls
 {
     public partial class AutoShow : System.Web.UI.UserControl
     {
+        private readonly ProductService productService = new ProductService();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                LoadHotProducts();
+            }
+
+        }
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            LoadHotProducts(); // 定时刷新热销商品
+        }
+        private void LoadHotProducts()
+        {
+            // 调用服务层方法获取热销商品
+            DataTable hotProducts = productService.GetHotProducts();
+            gvHotProducts.DataSource = hotProducts;
+            gvHotProducts.DataBind();
+        }
         //private static int currentIndex = 0;
         //private static Product currentProduct;
 

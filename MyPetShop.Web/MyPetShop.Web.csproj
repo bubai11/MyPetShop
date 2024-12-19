@@ -124,6 +124,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Controls\Category.ascx" />
+    <Content Include="Controls\NewProduct.ascx" />
     <Content Include="Controls\SiteMap.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -294,6 +296,20 @@
     </Compile>
     <Compile Include="ChangePwd.aspx.designer.cs">
       <DependentUpon>ChangePwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Category.ascx.cs">
+      <DependentUpon>Category.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Category.ascx.designer.cs">
+      <DependentUpon>Category.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NewProduct.ascx.cs">
+      <DependentUpon>NewProduct.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\NewProduct.ascx.designer.cs">
+      <DependentUpon>NewProduct.ascx</DependentUpon>
     </Compile>
     <Compile Include="EmailSender.cs" />
     <Compile Include="Contact.aspx.cs">

@@ -20,5 +20,11 @@ namespace MyPetShop.BLL
             return productDAL.SearchProducts(searchQuery);
 
         }
+        //后续调用访问层的方法
+        public DataTable GetHotProducts()
+        {
+            // 调用数据访问层方法
+            return productDAL.GetHotProducts();
+        }
     }
 }

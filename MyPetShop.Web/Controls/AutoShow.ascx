@@ -1,4 +1,38 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AutoShow.ascx.cs" Inherits="MyPetShop.Web.UserControls.AutoShow" %>
+<asp:ScriptManager ID="ScriptManager1" runat="server" />
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+        <!-- 商品显示表格 -->
+        <asp:GridView ID="gvHotProducts" runat="server" CssClass="table table-striped" AutoGenerateColumns="False">
+            <Columns>
+                <!-- 商品编号 -->
+                <asp:BoundField DataField="ProductId" HeaderText="编号" />
+                <!-- 商品名称 -->
+                <asp:BoundField DataField="Name" HeaderText="商品名称" />
+                <!-- 商品价格 -->
+                <asp:BoundField DataField="ListPrice" HeaderText="价格" DataFormatString="{0:C}" />
+                <!-- 商品库存 -->
+                <asp:BoundField DataField="Qty" HeaderText="库存" />
+                <!-- 购买链接 -->
+                <asp:TemplateField HeaderText="操作">
+                    <ItemTemplate>
+                        <asp:HyperLink ID="lnkBuy" runat="server" Text="购买" 
+                                       NavigateUrl='<%# "Cart.aspx?productId=" + Eval("ProductId") %>'></asp:HyperLink>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+    </Triggers>
+</asp:UpdatePanel>
+<asp:Timer ID="Timer1" runat="server" Interval="5000" OnTick="Timer1_Tick" />
+<asp:UpdateProgress ID="UpdateProgress1" runat="server">
+    <ProgressTemplate>
+        <div>加载中...</div>
+    </ProgressTemplate>
+</asp:UpdateProgress>
 <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <!-- 进度条控件，加载时显示 -->
