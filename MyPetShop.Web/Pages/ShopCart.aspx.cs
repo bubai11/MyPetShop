@@ -102,10 +102,10 @@ namespace MyPetShop.Web.Pages
                 var dataItem = row.DataItem;
                 // 假设 DataItem 是 DataRowView 类型，使用索引访问器来获取列值
                 int customerId = Convert.ToInt32(((DataRowView)dataItem)["CustomerId"]);
-                int proId=Convert.ToInt32(((DataRowView)dataItem)["ProId"]);
+                int proId = Convert.ToInt32(((DataRowView)dataItem)["ProId"]);
                 int qty = Convert.ToInt32(txtQty.Text);
 
-                bool isUpdated=cartItemSrv.UpdateProductQuantity( customerId,  proId,  qty);
+                bool isUpdated = cartItemSrv.UpdateProductQuantity(customerId, proId, qty);
                 if (isUpdated)
                 {
                     Console.WriteLine("购物车商品数量更新成功！");
@@ -127,7 +127,7 @@ namespace MyPetShop.Web.Pages
         // 清空购物车按钮点击事件
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            bool isCleared= cartItemSrv.ClearCart(Session["CustomerId"] as int? ?? 0);
+            bool isCleared = cartItemSrv.ClearCart(Session["CustomerId"] as int? ?? 0);
             if (isCleared)
             {
                 Console.WriteLine("购物车已清空！");
