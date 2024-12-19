@@ -6,7 +6,7 @@
             <asp:GridView ID="OrderGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderId" CssClass="table table-striped">
                 <Columns>
                     <asp:BoundField DataField="OrderId" HeaderText="订单ID" ReadOnly="True" />
-                    <asp:BoundField DataField="CustomerId" HeaderText="用户号" ReadOnly="True" Visible="False" /> <!-- 可以选择隐藏这个字段，除非有特定需求 -->
+                    <asp:BoundField DataField="CustomerId" HeaderText="用户号" ReadOnly="True" />
                     <asp:BoundField DataField="UserName" HeaderText="用户名" ReadOnly="True" />
                     <asp:BoundField DataField="OrderDate" HeaderText="订单日期" ReadOnly="True" DataFormatString="{0:yyyy-MM-dd}" />
                     <asp:BoundField DataField="Addr1" HeaderText="用户地址" ReadOnly="True" />

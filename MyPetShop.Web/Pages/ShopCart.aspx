@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShopCart.aspx.cs" Inherits="MyPetShop.ShopCart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="ShopCart.aspx.cs" Inherits="MyPetShop.Web.Pages.ShopCart" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -40,13 +40,10 @@
             <!-- 购物车商品列表 -->  
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">  
                 <Columns>  
-                    <!-- 商品名称 -->  
                     <asp:BoundField DataField="ProName" HeaderText="商品名称" />  
 
-                    <!-- 商品单价 -->  
                     <asp:BoundField DataField="ListPrice" HeaderText="单价" DataFormatString="{0:C2}" />  
 
-                    <!-- 商品数量 -->  
                     <asp:TemplateField HeaderText="购买数量">  
                         <ItemTemplate>  
                             <asp:TextBox ID="txtQty" runat="server" Text='<%# Bind("Qty") %>' Width="50px"   
@@ -54,17 +51,13 @@
                         </ItemTemplate>  
                     </asp:TemplateField>  
 
-                    <!-- 小计 -->  
                     <asp:BoundField DataField="TotalPrice" HeaderText="小计" DataFormatString="{0:C2}" />  
 
-                    <!-- 操作按钮 -->
                     <asp:TemplateField HeaderText="操作">
                         <ItemTemplate>
-                            <!-- Select 按钮 -->
                             <asp:Button ID="btnSelect" runat="server" CommandName="Select" 
                                         CommandArgument="<%# Container.DataItemIndex %>" Text="选择" />
-                
-                            <!-- Delete 按钮 -->
+
                             <asp:Button ID="btnDelete" runat="server" CommandName="Delete" 
                                         CommandArgument="<%# Container.DataItemIndex %>" Text="删除" />
                         </ItemTemplate>

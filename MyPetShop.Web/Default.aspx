@@ -3,7 +3,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <main>
+<%--    <main>
         <section class="row" aria-labelledby="aspnetTitle">
             <h1 id="aspnetTitle">ASP.NET</h1>
             <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
@@ -40,7 +40,7 @@
                     <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
                 </p>
             </section>
-        </div>
+        </div>--%>
     </main>
 
 </asp:Content>

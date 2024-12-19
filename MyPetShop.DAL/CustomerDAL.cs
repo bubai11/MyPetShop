@@ -46,6 +46,7 @@ namespace MyPetShop.DAL
                         };
                     }
 
+                    System.Diagnostics.Debug.WriteLine("CustomerId：" + reader["CustomerId"]);
                     reader.Close();
                 }
 

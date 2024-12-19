@@ -17,7 +17,7 @@ namespace MyPetShop.Web
             {
                 if (Session["CustomerId"] == null) // 用户未登录
                 {
-                    Response.Redirect("~/Login.aspx");
+                    Response.Redirect("../Login.aspx");
                 }
             }
 
