@@ -8,8 +8,7 @@ namespace MyPetShop.DAL
 {
     public class ProductDAL
     {
-        private readonly string connectionString =
-            ConfigurationManager.ConnectionStrings["MyPetShopConnectionString"].ConnectionString;
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["MyPetShopConnectionString"].ConnectionString;
 
         /// <summary>  
         /// 根据产品名称或描述搜索产品  
@@ -23,10 +22,13 @@ namespace MyPetShop.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string sql = @"SELECT ProductId, Name, ListPrice, UnitCost, Descn, Image, Qty
-                                   FROM Product
-                                   WHERE Name LIKE @SearchQuery";
-                    // 创建 SQL 命令实例  
+                    // 查询 Product 表中所有需要的字段
+                    string sql = @"
+                        SELECT ProductId, CategoryId, Name, ListPrice, UnitCost, Descn, Image, Qty
+                        FROM Product
+                        WHERE Name LIKE @SearchQuery OR Descn LIKE @SearchQuery";
+
+                    // 创建 SQL 命令实例
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@SearchQuery", $"%{searchQuery}%");
 
@@ -35,6 +37,8 @@ namespace MyPetShop.DAL
 
                     DataTable resultTable = new DataTable();
                     adapter.Fill(resultTable);
+
+                    Console.WriteLine("查询结果行数：" + resultTable.Rows.Count);
 
                     return resultTable;
                 }
@@ -81,5 +85,36 @@ namespace MyPetShop.DAL
 
             return dataTable;
         }
+        //
+        public DataTable GetProductById(int productId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string sql = @"
+                SELECT ProductId, Name, ListPrice
+                FROM Product
+                WHERE ProductId = @ProductId";
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@ProductId", productId);
+
+                    conn.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                    DataTable resultTable = new DataTable();
+                    adapter.Fill(resultTable);
+
+                    return resultTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("查询商品信息时出错：" + ex.Message);
+                return null;
+            }
+        }
+
     }
 }

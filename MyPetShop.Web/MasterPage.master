@@ -203,9 +203,9 @@
             </div>  
         </div>  
 
-        <!-- 子页面内容区域 -->
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-
+            <%-- 子页面内容区域 --%>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>  
+        </div>
 
     <!-- 页脚 -->
     <footer class="text-center mt-4 footer">
@@ -223,7 +223,6 @@
             // 获取搜索框的值
             const query = document.getElementById('txtSearch').value.trim();
 
-            // 判断输入是否为空
             if (query) {
                 // 跳转到搜索页面并附加参数
                 window.location.href = `Pages/search.aspx?query=${encodeURIComponent(query)}`;

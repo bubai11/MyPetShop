@@ -2,6 +2,7 @@
 using MyPetShop.DAL;
 using System;
 using System.Data;
+using System.Web;
 using System.Web.UI.WebControls;
 
 namespace MyPetShop.Web.Pages
@@ -15,27 +16,26 @@ namespace MyPetShop.Web.Pages
         {
             if (!IsPostBack)
             {
-                int customerId = GetCustomerIdFromSession();
+                int customerId = Convert.ToInt32(HttpContext.Current.Session["CustomerId"]);
+                if (customerId == 0)
+                {
+                    lblCart.Text = "请先登录查看购物车！";
+                    return;
+                }
                 BindCart(customerId);
             }
         }
         //获取当前用户的 ID
-        private int GetCustomerIdFromSession()
-        {
-            // 示例：从 Session 中获取 CustomerId
-            return Convert.ToInt32(Session["CustomerId"]);
-        }
+        //private int GetCustomerIdFromSession()
+        //{
+        //    return Convert.ToInt32(Session["CustomerId"]);
+        //}
 
         private void BindCart(int customerId)
         {
             DataTable cartItems = cartItemSrv.GetCart(customerId);
             if (cartItems != null && cartItems.Rows.Count > 0)
             {
-                //Console.WriteLine("购物车商品：");
-                //foreach (DataRow row in cartItems.Rows)
-                //{
-                //    Console.WriteLine($"商品ID: {row["ProId"]}, 商品名称: {row["ProName"]}, 价格: {row["ListPrice"]}, 数量: {row["Qty"]}");
-                //}
                 GridView1.DataSource = cartItems;
                 GridView1.DataBind();
                 decimal total = cartItemSrv.CalculateTotal(Session["CustomerId"] as int? ?? 0);
@@ -51,7 +51,7 @@ namespace MyPetShop.Web.Pages
         }
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int customerId = GetCustomerIdFromSession();
+            int customerId = Convert.ToInt32(HttpContext.Current.Session["CustomerId"]);
 
             if (e.CommandName == "Select") // 选择操作
             {
