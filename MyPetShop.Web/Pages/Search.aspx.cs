@@ -1,6 +1,8 @@
 ﻿using MyPetShop.BLL;
+using MyPetShop.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -38,7 +40,7 @@ namespace MyPetShop.Web.Pages
 
                 if (searchResults != null && searchResults.Rows.Count > 0)
                 {
-                    // 将搜索结果绑定到 GridView 控件
+                    // 绑定搜索结果到 GridView
                     gvSearchResults.DataSource = searchResults;
                     gvSearchResults.DataBind();
                     lblMessage.Text = ""; // 清除提示信息
@@ -57,5 +59,58 @@ namespace MyPetShop.Web.Pages
                 Console.WriteLine("搜索异常：" + ex.Message);
             }
         }
+        //添加到购物车  
+        protected void AddToCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 获取商品编号
+                Button btn = (Button)sender;
+                int productId = Convert.ToInt32(btn.CommandArgument);
+
+                // 获取当前用户的 CustomerId（假设用户已登录，Session 中存储了用户 ID）
+                int customerId = Convert.ToInt32(Session["CustomerId"]);
+                if (customerId == 0)
+                {
+                    lblMessage.Text = "请先登录再添加到购物车！";
+                    return;
+                }
+
+                // 从数据库中查询商品信息
+                ProductDAL productDAL = new ProductDAL();
+                DataTable productData = productDAL.GetProductById(productId);
+
+                if (productData.Rows.Count > 0)
+                {
+                    DataRow product = productData.Rows[0];
+                    string productName = product["Name"].ToString();
+                    decimal listPrice = Convert.ToDecimal(product["ListPrice"]);
+                    int qty = 1; // 默认数量为 1
+
+                    // 添加到购物车表
+                    CartItemDAL cartItemDAL = new CartItemDAL();
+                    bool success = cartItemDAL.InsertCartItem(customerId, productId, productName, listPrice, qty);
+
+                    if (success)
+                    {
+                        lblMessage.Text = "商品已成功添加到购物车！";
+                    }
+                    else
+                    {
+                        lblMessage.Text = "添加到购物车失败，请稍后再试！";
+                    }
+                }
+                else
+                {
+                    lblMessage.Text = "未找到商品信息！";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "添加到购物车时出现错误，请稍后再试！";
+                Console.WriteLine("添加购物车异常：" + ex.Message);
+            }
+        }
+
     }
 }
