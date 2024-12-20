@@ -127,13 +127,15 @@ namespace MyPetShop.Web.Pages
             bool isCleared = cartItemSrv.ClearCart(Session["CustomerId"] as int? ?? 0);
             if (isCleared)
             {
-                Console.WriteLine("购物车已清空！");
+                lblCart.Text = "购物车已清空！";
+                // 清空GridView的数据显示
+                GridView1.DataSource = null;
+                GridView1.DataBind();
             }
             else
             {
-                Console.WriteLine("购物车为空，未做任何操作！");
+                lblCart.Text = "购物车为空，未做任何操作！";
             }
-            Response.Redirect(ResolveUrl("~/Default.aspx"));
         }
 
         protected void btnCheckout_Click(object sender, EventArgs e)

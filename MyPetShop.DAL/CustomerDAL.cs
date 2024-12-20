@@ -124,8 +124,8 @@ namespace MyPetShop.DAL
                 return false;
             }
         }
-    
-     // 通过邮箱获取用户信息
+
+        // 通过邮箱获取用户信息
         public Customer GetCustomerByEmail(string username, string email)
         {
             try
@@ -171,7 +171,7 @@ namespace MyPetShop.DAL
             }
         }
         // 更新用户密码
-        public bool UpdateCustomerPassword(string username,string pwd)
+        public bool UpdateCustomerPassword(string username, string pwd)
         {
             try
             {
@@ -198,7 +198,48 @@ namespace MyPetShop.DAL
                 return false;
             }
         }
-       
+        public Customer GetCustomerWithBalance(string username)
+        {
+            try
+            {
+                Customer customer = null;
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // 查询用户的详细信息和余额
+                    string sql = "SELECT CustomerId, Name, Email, Money FROM Customer WHERE Name = @Name";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@Name", username);
+
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        // 如果查询到用户信息，则构造 Customer 对象
+                        customer = new Customer
+                        {
+                            CustomerId = (int)reader["CustomerId"],
+                            Name = reader["Name"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            Money = (decimal)reader["Money"]
+                        };
+                    }
+                    reader.Close();
+                }
+
+                return customer; // 返回查询结果
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine("SQL 异常：" + sqlEx.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("其他异常：" + ex.Message);
+                return null;
+            }
+        }
     }
 } 
 

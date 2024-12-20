@@ -18,7 +18,6 @@ namespace MyPetShop.Web
                 InitializePage();
             }
         }
-
         private void InitializePage()
         {
             // 示例：设置页面标题或全局状态初始化

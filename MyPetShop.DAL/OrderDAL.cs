@@ -62,7 +62,7 @@ namespace MyPetShop.DAL
         //保存订单
         public string SaveOrder(int CustomerId, string UserName, string Addr1, string Addr2, string City, string State, string Zip, string Phone)
         {
-            string orderStatus = "Pending"; // 假设初始订单状态为"Pending"
+            string orderStatus = "未审核"; // 假设初始订单状态
             DateTime orderDate = DateTime.Now; // 获取当前时间作为订单日期
 
             using (SqlConnection conn = new SqlConnection(connectionString))

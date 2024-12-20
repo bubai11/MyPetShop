@@ -555,8 +555,8 @@ namespace MyPetShop.DAL
 		private string _Password;
 		
 		private string _Email;
-		
-		private EntitySet<CartItem> _CartItem;
+
+        private EntitySet<CartItem> _CartItem;
 		
 		private EntitySet<Order> _Order;
 		
