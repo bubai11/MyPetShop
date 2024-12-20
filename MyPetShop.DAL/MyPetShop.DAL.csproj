@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CartItemDAL.cs" />
+    <Compile Include="CategoryDAL.cs" />
     <Compile Include="CustomerDAL.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="MyPetShop.designer.cs">

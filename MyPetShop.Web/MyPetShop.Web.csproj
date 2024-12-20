@@ -105,7 +105,7 @@
     <Content Include="Admin\ManageOrders.aspx" />
     <Content Include="Admin\ManagePets.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
-    <Content Include="Pages\ChangePwd.aspx" />
+    <Content Include="ChangePwd.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -126,6 +126,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Controls\Category.ascx" />
     <Content Include="Controls\NewProduct.ascx" />
+    <Content Include="Controls\PetTree.ascx" />
     <Content Include="Controls\SiteMap.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -135,6 +136,7 @@
     <Content Include="Images\map.jpg" />
     <Content Include="Images\mouseOut.jpg" />
     <Content Include="Images\mouseOver.jpg" />
+    <Content Include="Images\nav.jpg" />
     <Content Include="Images\pet-shop.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -293,11 +295,11 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Pages\ChangePwd.aspx.cs">
+    <Compile Include="ChangePwd.aspx.cs">
       <DependentUpon>ChangePwd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\ChangePwd.aspx.designer.cs">
+    <Compile Include="ChangePwd.aspx.designer.cs">
       <DependentUpon>ChangePwd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controls\Category.ascx.cs">
@@ -313,6 +315,13 @@
     </Compile>
     <Compile Include="Controls\NewProduct.ascx.designer.cs">
       <DependentUpon>NewProduct.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PetTree.ascx.cs">
+      <DependentUpon>PetTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\PetTree.ascx.designer.cs">
+      <DependentUpon>PetTree.ascx</DependentUpon>
     </Compile>
     <Compile Include="EmailSender.cs" />
     <Compile Include="Contact.aspx.cs">

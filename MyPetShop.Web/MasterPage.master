@@ -10,6 +10,26 @@
     <title>MyPetShop - Master Page</title>  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />  
     <style>
+        .index {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .banner {
+            flex: 1; /* 内容区域自动扩展 */
+        }
+
+        .footer {
+            width: 100%;
+            position: relative;
+            bottom: 0;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            margin-top: auto; /* 确保页脚总是固定在底部 */
+        }
+
         /* 避免 ContentPlaceHolder1 被挤压 */
         #searchResultContainer {
             margin-top: 10px;
@@ -35,7 +55,7 @@
         .index{
 /*            background: linear-gradient(to right, #ebf3f6, #2686ef);*/
             box-shadow: 0 2px 4px rgba(0,0,0,.1);
-            background-image:url(./Images/nav.jpg);
+            background-image: url("https://localhost:44337/Images/nav.jpg");  
             background-size:cover;
             background-position: center;
             width:100vw;
@@ -162,6 +182,7 @@
                 <div class="text-right">
                     <uc1:UserStatus ID="UserStatus" runat="server" />
                 </div>
+                </div>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -170,12 +191,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./Pages/ShopCart.aspx">购物车</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Pages/Orders.aspx">订单</a>
-                        </li>
                     </ul>
                 </div>
-            </div>
             </div>
         </nav>
         <div class="banner">

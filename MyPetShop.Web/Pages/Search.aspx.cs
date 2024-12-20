@@ -1,16 +1,13 @@
 ﻿using MyPetShop.BLL;
 using MyPetShop.DAL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace MyPetShop.Web.Pages
 {
-    public partial class SearchResults : System.Web.UI.Page
+    public partial class search : System.Web.UI.Page
     {
         private readonly ProductService productService = new ProductService();
 
@@ -59,24 +56,25 @@ namespace MyPetShop.Web.Pages
                 Console.WriteLine("搜索异常：" + ex.Message);
             }
         }
-        //添加到购物车  
+
+        // 添加到购物车
         protected void AddToCart_Click(object sender, EventArgs e)
         {
             try
             {
-                // 获取商品编号
-                Button btn = (Button)sender;
-                int productId = Convert.ToInt32(btn.CommandArgument);
-
-                // 获取当前用户的 CustomerId（假设用户已登录，Session 中存储了用户 ID）
-                int customerId = Convert.ToInt32(Session["CustomerId"]);
-                if (customerId == 0)
+                // 检查用户是否登录
+                if (Session["CustomerId"] == null)
                 {
                     lblMessage.Text = "请先登录再添加到购物车！";
                     return;
                 }
 
-                // 从数据库中查询商品信息
+                // 获取当前用户的 CustomerId
+                int customerId = Convert.ToInt32(Session["CustomerId"]);
+                Button btn = (Button)sender;
+                int productId = Convert.ToInt32(btn.CommandArgument);
+
+                // 查询商品信息
                 ProductDAL productDAL = new ProductDAL();
                 DataTable productData = productDAL.GetProductById(productId);
 
@@ -111,6 +109,5 @@ namespace MyPetShop.Web.Pages
                 Console.WriteLine("添加购物车异常：" + ex.Message);
             }
         }
-
     }
 }

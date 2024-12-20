@@ -1,5 +1,32 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="ShopCart.aspx.cs" Inherits="MyPetShop.Web.Pages.ShopCart" %>
+<%@ Register TagPrefix="uc" TagName="PetTree" Src="~/Controls/PetTree.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>  
+  .search-container {  
+      display: flex;  
+      justify-content: space-between; /* Aligns the sidebar and main content side by side */  
+      width: 100%;  
+  }  
+
+  .search-sidebar {  
+      width: 30%; /* Adjust this width as necessary */  
+      padding: 10px;  
+      border-right: 1px solid #ccc; /* Optional: adds a separator */  
+  }  
+
+  .search-main {  
+      width: 70%; /* Adjust this width as necessary */  
+      padding: 10px;  
+  }  
+ </style> 
+    <div class="search-container">  
+    <!-- 左侧分类 -->  
+    <div class="search-sidebar">  
+        <h3>分类商品</h3>  
+        <uc:PetTree ID="PetTree" runat="server" />  
+    </div>  
+    <!-- 右侧结果 -->  
+    <div class="search-main">  
     <div class="cart-container">  
             <div class="cart-title">购物车</div>  
 
@@ -37,4 +64,6 @@
                 <asp:Label ID="lblCart" runat="server" CssClass="lbl-message" />
             </div>
         </div>
+    </div>
+    </div>
 </asp:Content>

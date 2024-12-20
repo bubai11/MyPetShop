@@ -51,7 +51,7 @@ namespace MyPetShop.Web.Controls
             {
                 lblStatus.Text = $"您好，【{username}】";
                 lnkAction1.Text = "修改密码";
-                lnkAction1.NavigateUrl = "../Pages/ChangePwd.aspx";
+                lnkAction1.NavigateUrl = ResolveUrl("~/ChangePwd.aspx");
                 lnkAction2.Text = "购物记录";
                 lnkAction2.NavigateUrl = "../Pages/OrderList.aspx";
                 lnkAction3.Text = "退出登录";
