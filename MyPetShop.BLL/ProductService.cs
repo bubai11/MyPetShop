@@ -26,5 +26,22 @@ namespace MyPetShop.BLL
             // 调用数据访问层方法
             return productDAL.GetHotProducts();
         }
+        // 获取最新商品
+        public  List<Product> GetLatestProducts(int count)
+        {
+            return productDAL.GetLatestProducts(count);  // 从 DAL 层获取最新商品
+        }
+
+        // 按分类获取商品
+        public List<Product> GetProductsByCategory(int categoryId)
+        {
+            return productDAL.GetProductsByCategory(categoryId);
+        }
+
+        // 按商品名称获取商品
+        public List<Product> GetProductsByName(string productName)
+        {
+            return productDAL.GetProductsByName(productName);
+        }
     }
 }

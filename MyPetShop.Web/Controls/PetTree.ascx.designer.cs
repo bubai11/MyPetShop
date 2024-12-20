@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace MyPetShop.Web.UserControls
+namespace MyPetShop.Web.Controls
 {
 
 

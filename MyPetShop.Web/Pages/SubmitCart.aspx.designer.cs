@@ -21,7 +21,7 @@ namespace MyPetShop.Web.Pages
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::MyPetShop.Web.UserControls.PetTree PetTree;
+        protected global::MyPetShop.Web.Controls.PetTree PetTree;
 
         /// <summary>
         /// ValidationSummary1 控件。

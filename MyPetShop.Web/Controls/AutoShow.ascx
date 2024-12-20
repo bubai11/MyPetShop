@@ -2,18 +2,12 @@
 <asp:ScriptManager ID="ScriptManager1" runat="server" />
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-        <!-- 商品显示表格 -->
         <asp:GridView ID="gvHotProducts" runat="server" CssClass="table table-striped" AutoGenerateColumns="False">
             <Columns>
-                <!-- 商品编号 -->
                 <asp:BoundField DataField="ProductId" HeaderText="编号" />
-                <!-- 商品名称 -->
                 <asp:BoundField DataField="Name" HeaderText="商品名称" />
-                <!-- 商品价格 -->
                 <asp:BoundField DataField="ListPrice" HeaderText="价格" DataFormatString="{0:C}" />
-                <!-- 商品库存 -->
                 <asp:BoundField DataField="Qty" HeaderText="库存" />
-                <!-- 购买链接 -->
                 <asp:TemplateField HeaderText="操作">
                     <ItemTemplate>
                         <asp:HyperLink ID="lnkBuy" runat="server" Text="购买" 

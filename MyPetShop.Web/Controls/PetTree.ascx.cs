@@ -4,7 +4,7 @@ using System.Web.UI.WebControls;
 using MyPetShop.BLL;
 using System.Data;
 
-namespace MyPetShop.Web.UserControls
+namespace MyPetShop.Web.Controls
 {
     public partial class PetTree : System.Web.UI.UserControl
     {
@@ -30,9 +30,8 @@ namespace MyPetShop.Web.UserControls
             // 控制 TreeView 的可见性为 true         
             TreeViewCategories.Visible = true; // 确保 TreeView 始终可见  
         }
-
         // 加载分类数据并绑定到 TreeView
-        private void LoadCategories()
+        public void LoadCategories()
         {
             try
             {
@@ -66,25 +65,27 @@ namespace MyPetShop.Web.UserControls
                 Console.WriteLine("加载分类数据时出错: " + ex.Message);
             }
         }
-
         // 加载商品数据并绑定到对应分类的子节点
         private void LoadProductsForCategory(TreeNode categoryNode, int categoryId)
         {
             try
             {
-                // 调用 CategoryService 获取商品数据
+                // 调用 CategoryService 获取该分类下的商品数据
                 DataTable products = categoryService.GetProductsByCategory(categoryId);
 
                 if (products != null && products.Rows.Count > 0)
                 {
+                    // 遍历每个商品并添加为子节点
                     foreach (DataRow row in products.Rows)
                     {
                         TreeNode productNode = new TreeNode
                         {
-                            Text = row["Name"].ToString(),
-                            Value = row["ProductId"].ToString(),
-                            NavigateUrl = $"~/ProductDetails.aspx?ProductId={row["ProductId"]}"
+                            Text = row["Name"].ToString(),  // 商品名称
+                            Value = row["ProductId"].ToString(),  // 商品ID
+                            NavigateUrl = $"~/ProductDetails.aspx?ProductId={row["ProductId"]}"  // 商品详情链接
                         };
+
+                        // 将商品节点添加到当前分类节点的子节点中
                         categoryNode.ChildNodes.Add(productNode);
                     }
                 }
@@ -96,12 +97,78 @@ namespace MyPetShop.Web.UserControls
             }
         }
 
-        // 当用户选择一个节点时触发的事件
-        protected void TreeViewCategories_SelectedNodeChanged(object sender, EventArgs e)
-        {
-            // 处理节点选择事件
-            string selectedValue = TreeViewCategories.SelectedValue;
-            Response.Redirect(TreeViewCategories.SelectedNode.NavigateUrl);
-        }
+        //    // 加载分类数据并绑定到 TreeView
+        //    private void LoadCategories()
+        //    {
+        //        try
+        //        {
+        //            // 调用 CategoryService 获取分类数据
+        //            DataTable categories = categoryService.GetAllCategories();
+
+        //            if (categories != null && categories.Rows.Count > 0)
+        //            {
+        //                // 清空 TreeView 控件
+        //                TreeViewCategories.Nodes.Clear();
+
+        //                // 遍历分类数据并创建节点
+        //                foreach (DataRow row in categories.Rows)
+        //                {
+        //                    TreeNode categoryNode = new TreeNode
+        //                    {
+        //                        Text = row["Name"].ToString(),
+        //                        Value = row["CategoryId"].ToString(),
+        //                        NavigateUrl = $"~/Products.aspx?CategoryId={row["CategoryId"]}"
+        //                    };
+        //                    TreeViewCategories.Nodes.Add(categoryNode);
+
+        //                    // 加载该分类下的商品节点
+        //                    LoadProductsForCategory(categoryNode, int.Parse(row["CategoryId"].ToString()));
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // 处理错误
+        //            Console.WriteLine("加载分类数据时出错: " + ex.Message);
+        //        }
+        //    }
+
+        //    // 加载商品数据并绑定到对应分类的子节点
+        //    private void LoadProductsForCategory(TreeNode categoryNode, int categoryId)
+        //    {
+        //        try
+        //        {
+        //            // 调用 CategoryService 获取商品数据
+        //            DataTable products = categoryService.GetProductsByCategory(categoryId);
+
+        //            if (products != null && products.Rows.Count > 0)
+        //            {
+        //                foreach (DataRow row in products.Rows)
+        //                {
+        //                    TreeNode productNode = new TreeNode
+        //                    {
+        //                        Text = row["Name"].ToString(),
+        //                        Value = row["ProductId"].ToString(),
+        //                        NavigateUrl = $"~/ProductDetails.aspx?ProductId={row["ProductId"]}"
+        //                    };
+        //                    categoryNode.ChildNodes.Add(productNode);
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // 处理错误
+        //            Console.WriteLine("加载商品数据时出错: " + ex.Message);
+        //        }
+        //    }
+
+        //    // 当用户选择一个节点时触发的事件
+        //    protected void TreeViewCategories_SelectedNodeChanged(object sender, EventArgs e)
+        //    {
+        //        // 处理节点选择事件
+        //        string selectedValue = TreeViewCategories.SelectedValue;
+        //        Response.Redirect(TreeViewCategories.SelectedNode.NavigateUrl);
+        //    }
+
     }
 }

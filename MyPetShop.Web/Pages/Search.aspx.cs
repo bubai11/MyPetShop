@@ -81,13 +81,11 @@ namespace MyPetShop.Web.Pages
                 if (productData.Rows.Count > 0)
                 {
                     DataRow product = productData.Rows[0];
-                    string productName = product["Name"].ToString();
-                    decimal listPrice = Convert.ToDecimal(product["ListPrice"]);
                     int qty = 1; // 默认数量为 1
 
                     // 添加到购物车表
                     CartItemDAL cartItemDAL = new CartItemDAL();
-                    bool success = cartItemDAL.InsertCartItem(customerId, productId, productName, listPrice, qty);
+                    bool success = cartItemDAL.InsertCartItem(customerId, productId, qty);
 
                     if (success)
                     {

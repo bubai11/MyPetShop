@@ -13,9 +13,9 @@ namespace MyPetShop.BLL
 
         private readonly CartItemDAL cartItemDAL = new CartItemDAL();
         // 添加商品到购物车
-        public bool AddProductToCart(int customerId, int proId, string proName, decimal listPrice, int qty)
+        public bool AddProductToCart(int customerId, int proId, int qty)
         {
-            return cartItemDAL.InsertCartItem(customerId, proId, proName, listPrice, qty);
+            return cartItemDAL.InsertCartItem(customerId, proId, qty);
         }
 
         // 删除购物车商品

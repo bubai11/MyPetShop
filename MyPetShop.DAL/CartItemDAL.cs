@@ -8,10 +8,11 @@ namespace MyPetShop.DAL
     public class CartItemDAL
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["MyPetShopConnectionString"].ConnectionString;
-
-        // 添加或更新购物车商品
-        public bool InsertCartItem(int customerId, int proId, string proName, decimal listPrice, int qty)
+        // 添加购物车
+        public bool InsertCartItem(int customerId, int proId, int qty)
         {
+            // 查询商品名称和价格
+            string getProductSql = "SELECT Name, ListPrice FROM Product WHERE ProductId = @ProId";
             string sql = @"
                 IF EXISTS (SELECT 1 FROM CartItem WHERE CustomerId = @CustomerId AND ProId = @ProId)
                 BEGIN
@@ -29,6 +30,26 @@ namespace MyPetShop.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    conn.Open();
+
+                    // 获取商品信息
+                    SqlCommand getProductCmd = new SqlCommand(getProductSql, conn);
+                    getProductCmd.Parameters.Add("@ProId", SqlDbType.Int).Value = proId;
+
+                    SqlDataReader reader = getProductCmd.ExecuteReader();
+                    if (!reader.Read())
+                    {
+                        // 商品不存在，返回 false
+                        return false;
+                    }
+
+                    // 从查询结果中获取商品名称和价格
+                    string proName = reader["Name"].ToString();
+                    decimal listPrice = (decimal)reader["ListPrice"];
+
+                    reader.Close(); // 关闭 DataReader
+
+                    // 执行插入或更新购物车
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customerId;
                     cmd.Parameters.Add("@ProId", SqlDbType.Int).Value = proId;
@@ -36,7 +57,6 @@ namespace MyPetShop.DAL
                     cmd.Parameters.Add("@ListPrice", SqlDbType.Decimal).Value = listPrice;
                     cmd.Parameters.Add("@Qty", SqlDbType.Int).Value = qty;
 
-                    conn.Open();
                     int result = cmd.ExecuteNonQuery();
                     return result > 0;
                 }
@@ -47,6 +67,45 @@ namespace MyPetShop.DAL
                 return false;
             }
         }
+
+        //// 添加或更新购物车商品
+        //public bool InsertCartItem(int customerId, int proId, string proName, decimal listPrice, int qty)
+        //{
+        //    string sql = @"
+        //        IF EXISTS (SELECT 1 FROM CartItem WHERE CustomerId = @CustomerId AND ProId = @ProId)
+        //        BEGIN
+        //            UPDATE CartItem
+        //            SET Qty = Qty + @Qty
+        //            WHERE CustomerId = @CustomerId AND ProId = @ProId
+        //        END
+        //        ELSE
+        //        BEGIN
+        //            INSERT INTO CartItem (CustomerId, ProId, ProName, ListPrice, Qty)
+        //            VALUES (@CustomerId, @ProId, @ProName, @ListPrice, @Qty)
+        //        END";
+
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            SqlCommand cmd = new SqlCommand(sql, conn);
+        //            cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customerId;
+        //            cmd.Parameters.Add("@ProId", SqlDbType.Int).Value = proId;
+        //            cmd.Parameters.Add("@ProName", SqlDbType.NVarChar, 80).Value = proName;
+        //            cmd.Parameters.Add("@ListPrice", SqlDbType.Decimal).Value = listPrice;
+        //            cmd.Parameters.Add("@Qty", SqlDbType.Int).Value = qty;
+
+        //            conn.Open();
+        //            int result = cmd.ExecuteNonQuery();
+        //            return result > 0;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("插入或更新购物车时发生错误：" + ex.Message);
+        //        return false;
+        //    }
+        //}
 
         // 删除购物车商品]
         //public bool DeleteProductFromCart(int customerId, int productId)
