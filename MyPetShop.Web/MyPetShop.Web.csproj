@@ -105,7 +105,7 @@
     <Content Include="Admin\ManageOrders.aspx" />
     <Content Include="Admin\ManagePets.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
-    <Content Include="Pages\ChangePwd.aspx" />
+    <Content Include="ChangePwd.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -293,11 +293,11 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Pages\ChangePwd.aspx.cs">
+    <Compile Include="ChangePwd.aspx.cs">
       <DependentUpon>ChangePwd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\ChangePwd.aspx.designer.cs">
+    <Compile Include="ChangePwd.aspx.designer.cs">
       <DependentUpon>ChangePwd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controls\Category.ascx.cs">

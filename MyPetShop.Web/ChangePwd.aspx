@@ -57,6 +57,11 @@
         .btn {
             width: 140px;
         }
+        .tips{
+            display:flex;
+            justify-content: space-between;
+            flex-flow:row nowrap;
+        }
     </style>
 </head>
 <body>
@@ -93,11 +98,11 @@
 </asp:RequiredFieldValidator>
             </div>
             <div class="form-group">
-                <label for="txtPwdAgain">确认新密码</label>
+                <label for="TextBox1">确认新密码</label>
                 <asp:TextBox ID="TextBox1" TextMode="Password" CssClass="form-control" placeholder="请再次输入新密码" runat="server"></asp:TextBox>
                
     <asp:RequiredFieldValidator 
-        ControlToValidate="txtPwdAgain" 
+        ControlToValidate="TextBox1" 
         Display="Dynamic" 
         ForeColor="Red" 
         ID="RequiredFieldValidator1" 
@@ -105,15 +110,22 @@
         ErrorMessage="必填">
     </asp:RequiredFieldValidator>
             </div>
-            <asp:CompareValidator ControlToValidate="txtPwdAgain" ID="cvPwd" runat="server" ErrorMessage="两次密码不一致">
-
-            </asp:CompareValidator>
+            <asp:CompareValidator 
+    ControlToValidate="TextBox1" 
+    ControlToCompare="txtPwd" 
+    CssClass="text-danger" 
+    ID="cvPwd" 
+    runat="server" 
+    ErrorMessage="两次密码不一致">
+</asp:CompareValidator>
             <div class="loginbtn">
                 <asp:Button ID="btnChangePwd" CssClass="btn btn-primary" Text="确认修改" OnClick="BtnChangePwd_Click" runat="server" />
             </div>
-            <div class="mt-3">
+            
+        <div class="tips">
                 <asp:Label ID="lblMsg" CssClass="text-danger" runat="server"></asp:Label>
-            </div>
+            <a href="Default.aspx">返回首页</a>
+        </div>
         </form>
     </div>
 </div>

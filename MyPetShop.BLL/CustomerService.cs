@@ -41,7 +41,10 @@ namespace MyPetShop.BLL
         {
             return customerDAL.GetCustomerByEmail(username, email) != null;
         }
-
+        public bool fixPwd(string username, string password)
+        {
+            return customerDAL.GetCustomerByCredentials(username, password) != null;
+        }
         // 重置密码业务逻辑
         public bool ResetPassword(string username)
         {
