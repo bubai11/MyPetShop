@@ -24,8 +24,7 @@ namespace MyPetShop.BLL
                 // 调用 OrderDAL 保存订单
                 string orderStatus = orderDAL.SaveOrder(customerId, userName, addr1, addr2, city, state, zip, phone);
 
-                // 如果订单状态为 "Pending"，表示订单创建成功
-                return orderStatus == "Pending";
+                return orderStatus == "未审核";
             }
             catch (Exception ex)
             {

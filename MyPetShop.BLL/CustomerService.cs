@@ -59,7 +59,10 @@ namespace MyPetShop.BLL
         public void ChangePassword(string username,string password) {
             customerDAL.UpdateCustomerPassword(username, password);
         }
-        
+        public Customer GetCustomerWithBalance(string username)
+        {
+            return customerDAL.GetCustomerWithBalance(username);
+        }
     }
 }
 

@@ -17,7 +17,76 @@
   .search-main {  
       width: 70%; /* Adjust this width as necessary */  
       padding: 10px;  
-  }  
+  }
+
+    .cart-container {
+        width:750px; /* Set the width of the cart container */
+        margin: 0 auto; /* Center the cart container */
+        border: 1px solid #ddd; /* Add a border */
+        padding: 20px; /* Add padding */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow */
+    }
+
+    .cart-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .shopCart {
+        width: 100%;
+        border-collapse: collapse; /* Ensure table borders collapse into one */
+        margin-top: 20px; /* Add some space above the table */
+    }
+
+    .shopCart th {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .shopCart td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center; /* Center align table data */
+    }
+
+    .shopCart tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .cart-buttons {
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .btn-clear, .btn-checkout {
+        padding: 10px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn-clear {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .btn-checkout {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .lbl-total, .lbl-message {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
  </style> 
     <div class="search-container">  
     <!-- 左侧分类 -->  
@@ -31,7 +100,7 @@
             <div class="cart-title">购物车</div>  
 
             <!-- 购物车商品列表 -->  
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ProId,CartItemId" OnRowDeleting="GridView1_RowDeleting" OnRowCommand="GridView1_RowCommand">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ProId,CartItemId" OnRowDeleting="GridView1_RowDeleting" OnRowCommand="GridView1_RowCommand" CssClass="shopCart">
             <Columns>
                 <asp:BoundField DataField="ProName" HeaderText="商品名称" />
                 <asp:BoundField DataField="ListPrice" HeaderText="单价" DataFormatString="{0:C2}" />
