@@ -240,6 +240,33 @@ namespace MyPetShop.DAL
                 return null;
             }
         }
+        public bool UpdateCustomerBalance(int customerId, decimal amount)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string sql = "UPDATE Customer SET Money = Money - @Amount WHERE CustomerId = @CustomerId";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@Amount", amount);
+                    cmd.Parameters.AddWithValue("@CustomerId", customerId);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine("SQL 异常：" + sqlEx.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("其他异常：" + ex.Message);
+                return false;
+            }
+        }
     }
 } 
 

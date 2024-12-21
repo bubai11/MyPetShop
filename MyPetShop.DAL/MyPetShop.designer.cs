@@ -686,8 +686,10 @@ namespace MyPetShop.DAL
 				this._Order.Assign(value);
 			}
 		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
+
+        public decimal Money { get; internal set; }
+
+        public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
 		
