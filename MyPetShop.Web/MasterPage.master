@@ -222,7 +222,7 @@
                 <input id="txtSearch" type="text" class="form-control" placeholder="请输入搜索关键词" />  
             </div>  
             <div class="col-auto">  
-                <button id="btnSearch" class="btn btn-primary" onclick="performSearch()" type="submit">搜索</button>  
+                <button id="btnSearch" class="btn btn-primary" onclick="performSearch()" type="button">搜索</button>  
             </div>  
         </div>  
 
@@ -243,16 +243,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>  
 <script>
     // 搜索按钮点击事件
+    //function performSearch() {
+    //    // 获取搜索框的值
+    //    const query = document.getElementById('txtSearch').value.trim();
+    //    if (query) {
+    //        // 跳转到搜索页面并附加参数
+    //        window.location.href = `Pages/search.aspx?query=${encodeURIComponent(query)}`;
+    //        console.log("跳转成功：" + window.location.href.toString()); // 调用toString()方法
+    //    } else {
+    //        alert('请输入搜索关键词！');
+    //        console.log("跳转失败：" + window.location.href.toString()); // 调用toString()方法
+    //    }
+    //}
+    // 搜索按钮点击事件
     function performSearch() {
         // 获取搜索框的值
         const query = document.getElementById('txtSearch').value.trim();
         if (query) {
             // 跳转到搜索页面并附加参数
-            window.location.href = `Pages/search.aspx?query=${encodeURIComponent(query)}`;
-            console.log("跳转成功：" + window.location.href.toString()); // 调用toString()方法
+            const url = `<%= ResolveUrl("~/Pages/search.aspx") %>?query=${encodeURIComponent(query)}`;
+            window.location.href = url;
+            console.log("跳转成功：" + url);
         } else {
             alert('请输入搜索关键词！');
-            console.log("跳转失败：" + window.location.href.toString()); // 调用toString()方法
+            console.log("跳转失败：未输入搜索关键词");
         }
     }
 </script>
