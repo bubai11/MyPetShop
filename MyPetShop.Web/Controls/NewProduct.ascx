@@ -1,5 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NewProduct.ascx.cs" Inherits="MyPetShop.Web.Controls.NewProduct" %>
-<asp:GridView ID="NewProductGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped">
+<style>
+    .showTable{
+        float:left;
+        width:450px;
+        margin-left: 80px;
+    }
+</style>
+<asp:GridView ID="NewProductGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped showTable">
     <Columns>
         <asp:TemplateField HeaderText="商品名称">
             <ItemTemplate>

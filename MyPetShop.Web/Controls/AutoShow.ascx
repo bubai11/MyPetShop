@@ -1,10 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AutoShow.ascx.cs" Inherits="MyPetShop.Web.Controls.AutoShow" %>
+<style>
+    .autoshow{
+        float:right;
+        width:750px;
+        margin-right: 80px;
+    }
+</style>
 <asp:ScriptManager ID="ScriptManager1" runat="server" />
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Visible="false" />
 
-        <asp:GridView ID="gvProducts" runat="server" CssClass="table table-striped" AutoGenerateColumns="False">
+        <asp:GridView ID="gvProducts" runat="server" CssClass="table table-striped autoshow" AutoGenerateColumns="False">
             <Columns>
                 <asp:TemplateField HeaderText="图片">
                     <ItemTemplate>
