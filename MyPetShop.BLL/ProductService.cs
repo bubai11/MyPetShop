@@ -20,11 +20,10 @@ namespace MyPetShop.BLL
             return productDAL.SearchProducts(searchQuery);
 
         }
-        //后续调用访问层的方法
-        public DataTable GetHotProducts()
+        // 获取热门商品
+        public DataTable GetAllProducts()
         {
-            // 调用数据访问层方法
-            return productDAL.GetHotProducts();
+            return productDAL.GetAllProducts();
         }
         // 获取最新商品
         public  List<Product> GetLatestProducts(int count)

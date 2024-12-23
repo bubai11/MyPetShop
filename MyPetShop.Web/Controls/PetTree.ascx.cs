@@ -20,7 +20,7 @@ namespace MyPetShop.Web.Controls
             if (!IsPostBack)
             {
                 // 设置为折叠  
-                IsExpanded = false;
+                IsExpanded = true;
                 LoadCategories();
                 ToggleVisibility();
             }
@@ -30,7 +30,7 @@ namespace MyPetShop.Web.Controls
             // 控制 TreeView 的可见性为 true         
             TreeViewCategories.Visible = true; // 确保 TreeView 始终可见  
         }
-        // 加载分类数据并绑定到 TreeView
+        // 加载所有分类
         public void LoadCategories()
         {
             try
@@ -50,8 +50,12 @@ namespace MyPetShop.Web.Controls
                         {
                             Text = row["Name"].ToString(),
                             Value = row["CategoryId"].ToString(),
-                            NavigateUrl = $"~/Products.aspx?CategoryId={row["CategoryId"]}"
+                            NavigateUrl = ResolveUrl($"~/Pages/ProShow.aspx?CategoryId={row["CategoryId"]}")
                         };
+
+                        // 设置分类节点展开
+                        categoryNode.Expanded = IsExpanded;  // 根据是否展开设置
+
                         TreeViewCategories.Nodes.Add(categoryNode);
 
                         // 加载该分类下的商品节点
@@ -82,8 +86,7 @@ namespace MyPetShop.Web.Controls
                         {
                             Text = row["Name"].ToString(),  // 商品名称
                             Value = row["ProductId"].ToString(),  // 商品ID
-                            NavigateUrl = $"~/ProductDetails.aspx?ProductId={row["ProductId"]}"  // 商品详情链接
-                        };
+                            NavigateUrl = ResolveUrl($"~/Pages/ProShow.aspx?CategoryId={row["CategoryId"]}") };
 
                         // 将商品节点添加到当前分类节点的子节点中
                         categoryNode.ChildNodes.Add(productNode);
@@ -94,6 +97,15 @@ namespace MyPetShop.Web.Controls
             {
                 // 处理错误
                 Console.WriteLine("加载商品数据时出错: " + ex.Message);
+            }
+        }
+        // 确保方法名称与事件匹配  
+        protected void TreeViewCategories_SelectedNodeChanged(object sender, EventArgs e)
+        {
+            string selectedNodeUrl = TreeViewCategories.SelectedNode.NavigateUrl;
+            if (!string.IsNullOrEmpty(selectedNodeUrl))
+            {
+                Response.Redirect(selectedNodeUrl);
             }
         }
 

@@ -2,11 +2,32 @@
 <%@ Register Src="../Controls/PetTree.ascx" TagName="PetTree" TagPrefix="uc" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <h2>商品详情</h2>
-        <!-- 商品分类导航 -->
-        <uc:PetTree runat="server" ID="CategoryNavigation1" />
+    <style>  
+        .search-container {  
+            display: flex;  
+            justify-content: space-between; /* Aligns the sidebar and main content side by side */  
+            width: 100%;  
+        }  
 
+        .search-sidebar {  
+            width: 30%; /* Adjust this width as necessary */  
+            padding: 10px;  
+            border-right: 1px solid #ccc; /* Optional: adds a separator */  
+        }  
+
+        .search-main {  
+            width: 70%; /* Adjust this width as necessary */  
+            padding: 10px;  
+        }  
+    </style> 
+    <div class="search-container">
+    <!-- 左侧分类 -->
+    <div class="search-sidebar">
+        <h3>分类商品</h3>
+        <uc:PetTree ID="CategoryNavigation1" runat="server" />
+    </div>
+    <div class="search-sidebar">
+        <h2>商品详情</h2>
         <!-- 商品详细信息列表 -->
         <asp:GridView ID="ProductGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" 
                       AllowPaging="True" PageSize="4" OnPageIndexChanging="ProductGridView_PageIndexChanging">
@@ -30,5 +51,6 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+    </div>
     </div>
 </asp:Content>

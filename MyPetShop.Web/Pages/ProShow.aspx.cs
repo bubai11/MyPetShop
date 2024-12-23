@@ -75,7 +75,7 @@ namespace MyPetShop.Web.Pages
             int productId = int.Parse(button.CommandArgument.ToString());
 
             // 调用购物车服务将商品添加到购物车
-            int customerId = Convert.ToInt32((HttpContext.Current.Session["CustomerId"]));
+            int customerId = Convert.ToInt32(Session["CustomerId"]);
             int qty = 1; // 默认数量为 1
             cartItemService.AddProductToCart(customerId, productId, qty);
 
