@@ -14,19 +14,16 @@ namespace MyPetShop.Web.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            string searchQuery = Request.QueryString["query"];
+            System.Diagnostics.Debug.WriteLine(searchQuery);
+            if (!string.IsNullOrEmpty(searchQuery))
             {
-                // 获取查询字符串中的搜索关键字
-                string searchQuery = Request.QueryString["query"];
-                System.Diagnostics.Debug.WriteLine(searchQuery);
-                if (!string.IsNullOrEmpty(searchQuery))
-                {
-                    LoadSearchResults(searchQuery);
-                }
-                else
-                {
-                    lblMessage.Text = "请输入有效的搜索关键词！";
-                }
+                lblMessage.Text = $"搜索结果：{searchQuery}";
+                LoadSearchResults(searchQuery);
+            }
+            else
+            {
+                lblMessage.Text = "请输入搜索关键词！";
             }
         }
 
