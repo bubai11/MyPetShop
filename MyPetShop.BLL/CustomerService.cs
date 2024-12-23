@@ -63,6 +63,10 @@ namespace MyPetShop.BLL
         {
             return customerDAL.GetCustomerWithBalance(username);
         }
+        public bool DeductBalance(int customerId, decimal amount)
+        {
+            return customerDAL.UpdateCustomerBalance(customerId, amount);
+        }
     }
 }
 

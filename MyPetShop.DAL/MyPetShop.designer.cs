@@ -687,7 +687,7 @@ namespace MyPetShop.DAL
 			}
 		}
 
-        public decimal Money { get; set; }
+        public decimal Money { get; internal set; }
 
         public event PropertyChangingEventHandler PropertyChanging;
 		
