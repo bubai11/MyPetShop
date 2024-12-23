@@ -3,7 +3,7 @@
     .autoshow{
         float:right;
         width:750px;
-        margin-right: 80px;
+        margin-right: 60px;
     }
 </style>
 <asp:ScriptManager ID="ScriptManager1" runat="server" />

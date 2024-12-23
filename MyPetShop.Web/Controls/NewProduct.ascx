@@ -2,8 +2,8 @@
 <style>
     .showTable{
         float:left;
-        width:450px;
-        margin-left: 80px;
+        width:400px;
+        margin-left: 60px;
     }
 </style>
 <asp:GridView ID="NewProductGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped showTable">

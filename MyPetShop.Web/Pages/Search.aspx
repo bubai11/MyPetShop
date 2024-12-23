@@ -28,7 +28,7 @@
     </div>
     <!-- 右侧搜索结果 -->
     <div class="search-main">
-        <h2>搜索结果</h2>
+        <h3>搜索结果</h3>
         <asp:Label ID="lblMessage" runat="server" CssClass="text-danger"></asp:Label>
         <asp:GridView ID="gvSearchResults" runat="server" AutoGenerateColumns="False" CssClass="table">
             <Columns>

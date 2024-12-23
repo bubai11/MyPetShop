@@ -5,11 +5,11 @@
     <style>  
         .search-container {  
             display: flex;  
-            justify-content: space-between; /* Aligns the sidebar and main content side by side */  
+            justify-content: space-around; /* Aligns the sidebar and main content side by side */  
             width: 100%;  
         }  
 
-        .search-sidebar {  
+        .search-sidebar:first-child {  
             width: 30%; /* Adjust this width as necessary */  
             padding: 10px;  
             border-right: 1px solid #ccc; /* Optional: adds a separator */  
