@@ -10,7 +10,7 @@
         box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加阴影效果 */
         background-color: #fff; /* 设置背景颜色 */
         display: flex;  
-        justify-content: space-between; /* Aligns the sidebar and main content side by side */  
+        justify-content: space-around; /* Aligns the sidebar and main content side by side */  
         width: 100%;  
         border-radius: 8px; /* 设置圆角 */
         border: 1px solid #ddd;
@@ -43,12 +43,14 @@
             background-color: #f9f9f9; /* 条纹背景颜色 */
         }
 
-        .search-sidebar {  
-            width: 30%; /* Adjust this width as necessary */  
+        .search-sidebar:first-child {
             padding: 10px;  
+            width:200px;
             border-right: 1px solid #ccc; /* Optional: adds a separator */  
-        }  
-
+        }
+        .orderList{
+            width:800px;
+        }
         .search-main {  
             width: 70%; /* Adjust this width as necessary */  
             padding: 10px;  
@@ -60,7 +62,7 @@
         <h3>分类商品</h3>
         <uc:PetTree ID="CategoryNavigation1" runat="server" />
     </div>
-    <div class="search-sidebar">
+    <div class="search-sidebar orderList">
         <h4>我的订单列表</h4>
         <asp:GridView ID="OrderGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderId" CssClass="table table-striped">
             <Columns>
