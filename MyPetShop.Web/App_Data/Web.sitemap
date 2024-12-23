@@ -1,11 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
 	<siteMapNode url="Default.aspx" title="首页" description="首页">
-		<siteMapNode url="Products.aspx" title="商品列表" description="商品列表">
-			<siteMapNode url="ProductDetails.aspx" title="商品详情" description="商品详情" />
-		</siteMapNode>
-		<siteMapNode url="ShoppingCart.aspx" title="购物车" description="购物车" />
+		<siteMapNode url="Orderist.aspx" title="商品列表" description="商品列表"/>
+			<siteMapNode url="shopCart.aspx" title="购物车" description="购物车" />
+			<siteMapNode url="ProShow.aspx" title="商品详情" description="商品详情" />
+			<siteMapNode url="SubmitCart.aspx" title="提交订单" description="提交订单" />
 		<siteMapNode url="Admin.aspx" title="系统管理" description="系统管理" />
+		<siteMapNode title="系统管理" description="系统管理" >
+			<siteMapNode url="ManagOrders.aspx"  title="订单管理" description="订单管理" />
+			<siteMapNode url="ManagPets.aspx"  title="商品管理" description="商品管理" />
+			<siteMapNode url="ManagUsera.aspx" title="消费者管理" description="消费者管理"  />
+		</siteMapNode>
 	</siteMapNode>
 </siteMap>
 
