@@ -2,6 +2,7 @@
 using MyPetShop.DAL;
 using System;
 using System.Data;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,6 +18,7 @@ namespace MyPetShop.Web.Pages
             {
                 // 获取查询字符串中的搜索关键字
                 string searchQuery = Request.QueryString["query"];
+                System.Diagnostics.Debug.WriteLine(searchQuery);
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     LoadSearchResults(searchQuery);
@@ -66,6 +68,8 @@ namespace MyPetShop.Web.Pages
                 if (Session["CustomerId"] == null)
                 {
                     lblMessage.Text = "请先登录再添加到购物车！";
+                    System.Diagnostics.Debug.WriteLine("登陆成功" + HttpContext.Current.Session["CustomerId"]);
+                    System.Diagnostics.Debug.WriteLine("登陆成功2" + Session["CustomerId"]);
                     return;
                 }
 

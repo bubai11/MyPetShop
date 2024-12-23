@@ -50,41 +50,25 @@ namespace MyPetShop.DAL
             }
         }
 
-        // 获取热销商品的方法
-        public DataTable GetHotProducts()
+        // 获取所有商品
+        // 获取所有商品的基本信息，包括图片
+        public DataTable GetAllProducts()
         {
             DataTable dataTable = new DataTable();
-            string sql = @"
-                SELECT TOP 5 
-                    ProductId, 
-                    Name, 
-                    ListPrice, 
-                    Qty
-                FROM Product
-                ORDER BY Sales DESC"; // 假设有一个字段 Sales 表示销量
+            string query = "SELECT ProductId, Name, ListPrice, UnitCost, Descn, Image, Qty FROM Product";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                        {
-                            adapter.Fill(dataTable);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // 处理异常（可以记录日志或抛出异常）
-                    throw new ApplicationException("获取热销商品失败: " + ex.Message);
-                }
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dataTable);
             }
 
             return dataTable;
         }
+
         // 根据产品ID获取产品信息
         public DataTable GetProductById(int productId)
         {
@@ -150,7 +134,7 @@ namespace MyPetShop.DAL
         public List<Product> GetProductsByCategory(int categoryId)
         {
             List<Product> products = new List<Product>();
-            string query = "SELECT ProductId, Name, ListPrice, UnitCost, [Desc], Image, Qty FROM Product WHERE CategoryId = @CategoryId";
+            string query = "SELECT ProductId, Name, ListPrice, UnitCost, Descn, Image, Qty FROM Product WHERE CategoryId = @CategoryId";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -209,7 +193,37 @@ namespace MyPetShop.DAL
 
             return products;
         }
+        // 按商品ID查询商品
+        //public List<Product> GetProductsById(int productId)
+        //{
+        //    List<Product> products = new List<Product>();
+        //    string query = "SELECT ProductId, Name, ListPrice, UnitCost, Descn, Image, Qty FROM Product WHERE ProductId = @ProductId";
 
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        SqlCommand cmd = new SqlCommand(query, conn);
+        //        cmd.Parameters.AddWithValue("@ProductId", productId);  // 添加参数
+
+        //        conn.Open();
+        //        SqlDataReader reader = cmd.ExecuteReader();
+
+        //        while (reader.Read())
+        //        {
+        //            products.Add(new Product
+        //            {
+        //                ProductId = reader.GetInt32(0),
+        //                Name = reader.GetString(1),
+        //                ListPrice = reader.GetDecimal(2),
+        //                UnitCost = reader.GetDecimal(3),
+        //                Descn = reader.GetString(4),
+        //                Image = reader.GetString(5),
+        //                Qty = reader.GetInt32(6)
+        //            });
+        //        }
+        //    }
+
+        //    return products;
+        //}
 
     }
 }
