@@ -2,7 +2,7 @@
 <style>
     .showTable{
         float:left;
-        width:400px;
+        width:350px;
         margin-left: 60px;
     }
 </style>

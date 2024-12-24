@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace MyPetShop.Web.Admin
 {
-    public partial class ManagePets : System.Web.UI.Page
+    public partial class OrderMaster : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

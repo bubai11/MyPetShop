@@ -11,7 +11,7 @@ namespace MyPetShop.Web.Admin
 {
 
 
-    public partial class ManagePets
+    public partial class OrderSub
     {
     }
 }
