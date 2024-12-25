@@ -48,7 +48,8 @@ namespace MyPetShop.Web
                     // 登录成功，保存用户信息到 Session
                     HttpContext.Current.Session["UserName"] = user.Name;
                     HttpContext.Current.Session["CustomerId"] = user.CustomerId;
-                    HttpContext.Current.Session["IsAdmin"] = user.Name.Equals("admin");
+                    bool isAdmin = name.Equals("Admin", StringComparison.OrdinalIgnoreCase);
+                    HttpContext.Current.Session["IsAdmin"] = isAdmin;
                     System.Diagnostics.Debug.WriteLine("登陆成功"+HttpContext.Current.Session["CustomerId"]);
 
 

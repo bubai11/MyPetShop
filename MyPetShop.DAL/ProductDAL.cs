@@ -72,32 +72,39 @@ namespace MyPetShop.DAL
         // 根据产品ID获取产品信息
         public DataTable GetProductById(int productId)
         {
+            DataTable product = new DataTable();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string sql = @"
-                SELECT ProductId, Name, ListPrice
-                FROM Product
-                WHERE ProductId = @ProductId";
-
+                    string sql = "SELECT ProductId, Name, ListPrice, Qty FROM Product WHERE ProductId = @ProductId";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@ProductId", productId);
 
                     conn.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        product.Columns.Add("ProductId", typeof(int));
+                        product.Columns.Add("Name", typeof(string));
+                        product.Columns.Add("ListPrice", typeof(decimal));
+                        product.Columns.Add("Qty", typeof(int)); // 确保包含 Qty 列
 
-                    DataTable resultTable = new DataTable();
-                    adapter.Fill(resultTable);
-
-                    return resultTable;
+                        DataRow row = product.NewRow();
+                        row["ProductId"] = reader.GetInt32(0);
+                        row["Name"] = reader.GetString(1);
+                        row["ListPrice"] = reader.GetDecimal(2);
+                        row["Qty"] = reader.GetInt32(3);
+                        product.Rows.Add(row);
+                    }
+                    reader.Close();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("查询商品信息时出错：" + ex.Message);
-                return null;
+                Console.WriteLine("获取商品信息时出错：" + ex.Message);
             }
+            return product;
         }
         // 获取最新商品
         public   List<Product> GetLatestProducts(int count)
@@ -193,37 +200,45 @@ namespace MyPetShop.DAL
 
             return products;
         }
-        // 按商品ID查询商品
-        //public List<Product> GetProductsById(int productId)
-        //{
-        //    List<Product> products = new List<Product>();
-        //    string query = "SELECT ProductId, Name, ListPrice, UnitCost, Descn, Image, Qty FROM Product WHERE ProductId = @ProductId";
+        public void UpdateProduct(DataRow product)
+        {
+            string query = "UPDATE Product SET Name = @Name, ListPrice = @ListPrice, Qty = @Qty WHERE ProductId = @ProductId";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Name", product["Name"]);
+                cmd.Parameters.AddWithValue("@ListPrice", product["ListPrice"]);
+                cmd.Parameters.AddWithValue("@Qty", product["Qty"]); // 确保更新 Qty 列
+                cmd.Parameters.AddWithValue("@ProductId", product["ProductId"]);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        SqlCommand cmd = new SqlCommand(query, conn);
-        //        cmd.Parameters.AddWithValue("@ProductId", productId);  // 添加参数
-
-        //        conn.Open();
-        //        SqlDataReader reader = cmd.ExecuteReader();
-
-        //        while (reader.Read())
-        //        {
-        //            products.Add(new Product
-        //            {
-        //                ProductId = reader.GetInt32(0),
-        //                Name = reader.GetString(1),
-        //                ListPrice = reader.GetDecimal(2),
-        //                UnitCost = reader.GetDecimal(3),
-        //                Descn = reader.GetString(4),
-        //                Image = reader.GetString(5),
-        //                Qty = reader.GetInt32(6)
-        //            });
-        //        }
-        //    }
-
-        //    return products;
-        //}
+        public void DeleteProduct(int productId)
+        {
+            string query = "DELETE FROM Product WHERE ProductId = @ProductId";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ProductId", productId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void AddProduct(DataRow product)
+        {
+            string query = "INSERT INTO Product (Name, ListPrice, Qty) VALUES (@Name, @ListPrice, @Qty)";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Name", product["Name"]);
+                cmd.Parameters.AddWithValue("@ListPrice", product["ListPrice"]);
+                cmd.Parameters.AddWithValue("@Qty", product["Qty"]);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
     }
 }

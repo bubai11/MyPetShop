@@ -42,7 +42,7 @@ namespace MyPetShop.Web.Controls
             {
                 lblStatus.Text = $"您好，【{username}】";
                 lnkAction1.Text = "系统管理";
-                lnkAction1.NavigateUrl = "~/Admin/Dashboard.aspx";
+                lnkAction1.NavigateUrl = "~/Admin/CategoryMaster.aspx";
                 lnkAction2.Text = "退出登录";
                 lnkAction2.NavigateUrl = "~/Logout.aspx";
                 lnkAction3.Visible = false; // 隐藏第三个链接

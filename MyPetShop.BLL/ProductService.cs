@@ -42,5 +42,30 @@ namespace MyPetShop.BLL
         {
             return productDAL.GetProductsByName(productName);
         }
+        public void DeleteProducts(string productIds)
+        {
+            string[] idArray = productIds.Split(',');
+            foreach (string id in idArray)
+            {
+                int productId = Convert.ToInt32(id);
+                productDAL.DeleteProduct(productId);
+            }
+        }
+        public void UpdateProduct(DataRow product)
+        {
+            productDAL.UpdateProduct(product);
+        }
+        public void AddProduct(DataRow product)
+        {
+            productDAL.AddProduct(product);
+        }
+        public DataTable GetProductById(int productId)
+        {
+            return productDAL.GetProductById(productId);
+        }
+        public void DeleteProduct(int productId)
+        {
+            productDAL.DeleteProduct(productId);
+        }
     }
 }
