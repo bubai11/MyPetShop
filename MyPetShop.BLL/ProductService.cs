@@ -65,7 +65,8 @@ namespace MyPetShop.BLL
         }
         public void DeleteProduct(int productId)
         {
-            productDAL.DeleteProduct(productId);
+            productDAL.DeleteCartItemsByProductId(productId); // 删除引用该商品ID的所有购物车项
+            productDAL.DeleteProduct(productId); // 然后删除商品
         }
     }
 }

@@ -42,6 +42,24 @@ namespace MyPetShop.Web.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
 
         /// <summary>
+        /// ddlCategoryId 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategoryId;
+
+        /// <summary>
+        /// rfvCategoryId 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategoryId;
+
+        /// <summary>
         /// txtListPrice 控件。
         /// </summary>
         /// <remarks>
@@ -60,13 +78,49 @@ namespace MyPetShop.Web.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvListPrice;
 
         /// <summary>
-        /// rvListPrice 控件。
+        /// txtUnitCost 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator rvListPrice;
+        protected global::System.Web.UI.WebControls.TextBox txtUnitCost;
+
+        /// <summary>
+        /// rfvUnitCost 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUnitCost;
+
+        /// <summary>
+        /// ddlSuppId 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSuppId;
+
+        /// <summary>
+        /// rfvSuppId 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSuppId;
+
+        /// <summary>
+        /// txtDescn 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescn;
 
         /// <summary>
         /// txtQty 控件。
@@ -87,13 +141,22 @@ namespace MyPetShop.Web.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvQty;
 
         /// <summary>
-        /// rvQty 控件。
+        /// fuImage 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator rvQty;
+        protected global::System.Web.UI.WebControls.FileUpload fuImage;
+
+        /// <summary>
+        /// imgCurrentImage 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgCurrentImage;
 
         /// <summary>
         /// btnUpdate 控件。
