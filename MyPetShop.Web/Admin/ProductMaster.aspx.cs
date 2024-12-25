@@ -58,7 +58,6 @@ namespace MyPetShop.Web.Admin
                 CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
                 if (chkSelect != null && chkSelect.Checked)
                 {
-                    // Get the product ID from the DataKeys collection
                     int productId = Convert.ToInt32(gvProducts.DataKeys[row.RowIndex].Value);
                     if (selectedIds.Length > 0)
                     {
@@ -71,8 +70,15 @@ namespace MyPetShop.Web.Admin
             if (selectedIds.Length > 0)
             {
                 string ids = selectedIds.ToString();
+                string[] productIds = ids.Split(',');
+
                 ProductService service = new ProductService();
-                service.DeleteProducts(ids);
+                foreach (string productIdStr in productIds)
+                {
+                    int productId = Convert.ToInt32(productIdStr.Trim());
+                    service.DeleteProduct(productId); // 删除商品及其相关的购物车项
+                }
+
                 BindProducts();
                 lblMessage.Text = "选中商品删除成功！";
             }
@@ -81,7 +87,6 @@ namespace MyPetShop.Web.Admin
                 lblMessage.Text = "请选择要删除的商品。";
             }
         }
-
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddPro.aspx");

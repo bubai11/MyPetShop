@@ -168,13 +168,13 @@ namespace MyPetShop.Web.Admin
         protected global::System.Web.UI.WebControls.RangeValidator rvQty;
 
         /// <summary>
-        /// txtImage 控件。
+        /// fuImage 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtImage;
+        protected global::System.Web.UI.WebControls.FileUpload fuImage;
 
         /// <summary>
         /// btnAdd 控件。

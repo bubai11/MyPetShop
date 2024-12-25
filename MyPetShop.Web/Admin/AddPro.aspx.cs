@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.IO;
+using System.Web;
 using MyPetShop.BLL;
 
 namespace MyPetShop.Web.Admin
@@ -20,7 +22,6 @@ namespace MyPetShop.Web.Admin
 
                 // Populate supplier dropdown list
                 SupplierService supplierService = new SupplierService();
-
                 DataTable suppliers = supplierService.GetAllSuppliers();
                 ddlSuppId.DataSource = suppliers;
                 ddlSuppId.DataTextField = "Name";
@@ -46,14 +47,26 @@ namespace MyPetShop.Web.Admin
                     product.Columns.Add("Qty", typeof(int));
 
                     DataRow dataRow = product.NewRow();
-                    dataRow["CategoryId"] = ddlCategoryId.SelectedValue;
-                    dataRow["ListPrice"] = Convert.ToDecimal(txtListPrice.Text.Trim());
-                    dataRow["UnitCost"] = Convert.ToDecimal(txtUnitCost.Text.Trim());
-                    dataRow["SuppId"] = ddlSuppId.SelectedValue;
+                    dataRow["CategoryId"] = int.Parse(ddlCategoryId.SelectedValue);
+                    dataRow["ListPrice"] = decimal.Parse(txtListPrice.Text.Trim());
+                    dataRow["UnitCost"] = decimal.Parse(txtUnitCost.Text.Trim());
+                    dataRow["SuppId"] = int.Parse(ddlSuppId.SelectedValue);
                     dataRow["Name"] = txtName.Text.Trim();
                     dataRow["Descn"] = txtDescn.Text.Trim();
-                    dataRow["Image"] = txtImage.Text.Trim();
-                    dataRow["Qty"] = Convert.ToInt32(txtQty.Text.Trim());
+                    dataRow["Qty"] = int.Parse(txtQty.Text.Trim());
+
+                    // Handle file upload
+                    if (fuImage.HasFile)
+                    {
+                        string fileName = Path.GetFileName(fuImage.PostedFile.FileName);
+                        string filePath = Server.MapPath("~/Images/" + fileName);
+                        fuImage.SaveAs(filePath);
+                        dataRow["Image"] = "~/Images/" + fileName;
+                    }
+                    else
+                    {
+                        dataRow["Image"] = string.Empty; // No image uploaded
+                    }
 
                     ProductService service = new ProductService();
                     service.AddProduct(dataRow);

@@ -77,25 +77,47 @@ namespace MyPetShop.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string sql = "SELECT ProductId, Name, ListPrice, Qty FROM Product WHERE ProductId = @ProductId";
+                    string sql = @"
+            SELECT ProductId, CategoryId, Name, ListPrice, UnitCost, Descn, Image, Qty, SuppId
+            FROM Product
+            WHERE ProductId = @ProductId";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@ProductId", productId);
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
+
+                    // Check if there are any rows to read
+                    if (reader.HasRows)
                     {
                         product.Columns.Add("ProductId", typeof(int));
+                        product.Columns.Add("CategoryId", typeof(int));
                         product.Columns.Add("Name", typeof(string));
                         product.Columns.Add("ListPrice", typeof(decimal));
-                        product.Columns.Add("Qty", typeof(int)); // 确保包含 Qty 列
+                        product.Columns.Add("UnitCost", typeof(decimal));
+                        product.Columns.Add("SuppId", typeof(int));
+                        product.Columns.Add("Descn", typeof(string));
+                        product.Columns.Add("Image", typeof(string));
+                        product.Columns.Add("Qty", typeof(int));
 
-                        DataRow row = product.NewRow();
-                        row["ProductId"] = reader.GetInt32(0);
-                        row["Name"] = reader.GetString(1);
-                        row["ListPrice"] = reader.GetDecimal(2);
-                        row["Qty"] = reader.GetInt32(3);
-                        product.Rows.Add(row);
+                        while (reader.Read())
+                        {
+                            DataRow row = product.NewRow();
+                            row["ProductId"] = reader.GetInt32(reader.GetOrdinal("ProductId"));
+                            row["CategoryId"] = reader.GetInt32(reader.GetOrdinal("CategoryId"));
+                            row["Name"] = reader.GetString(reader.GetOrdinal("Name"));
+                            row["ListPrice"] = reader.GetDecimal(reader.GetOrdinal("ListPrice"));
+                            row["UnitCost"] = reader.GetDecimal(reader.GetOrdinal("UnitCost"));
+                            row["SuppId"] = reader.GetInt32(reader.GetOrdinal("SuppId"));
+                            row["Descn"] = reader.GetString(reader.GetOrdinal("Descn"));
+                            row["Image"] = reader.GetString(reader.GetOrdinal("Image"));
+                            row["Qty"] = reader.GetInt32(reader.GetOrdinal("Qty"));
+                            product.Rows.Add(row);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows found for the given ProductId.");
                     }
                     reader.Close();
                 }
@@ -202,13 +224,29 @@ namespace MyPetShop.DAL
         }
         public void UpdateProduct(DataRow product)
         {
-            string query = "UPDATE Product SET Name = @Name, ListPrice = @ListPrice, Qty = @Qty WHERE ProductId = @ProductId";
+            string query = @"
+                UPDATE Product 
+                SET 
+                    CategoryId = @CategoryId, 
+                    Name = @Name, 
+                    ListPrice = @ListPrice, 
+                    UnitCost = @UnitCost, 
+                    SuppId = @SuppId, 
+                    Descn = @Descn, 
+                    Image = @Image, 
+                    Qty = @Qty 
+                WHERE ProductId = @ProductId";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@CategoryId", product["CategoryId"]);
                 cmd.Parameters.AddWithValue("@Name", product["Name"]);
                 cmd.Parameters.AddWithValue("@ListPrice", product["ListPrice"]);
-                cmd.Parameters.AddWithValue("@Qty", product["Qty"]); // 确保更新 Qty 列
+                cmd.Parameters.AddWithValue("@UnitCost", product["UnitCost"]);
+                cmd.Parameters.AddWithValue("@SuppId", product["SuppId"]);
+                cmd.Parameters.AddWithValue("@Descn", product["Descn"]);
+                cmd.Parameters.AddWithValue("@Image", product["Image"]);
+                cmd.Parameters.AddWithValue("@Qty", product["Qty"]);
                 cmd.Parameters.AddWithValue("@ProductId", product["ProductId"]);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -228,17 +266,33 @@ namespace MyPetShop.DAL
         }
         public void AddProduct(DataRow product)
         {
-            string query = "INSERT INTO Product (Name, ListPrice, Qty) VALUES (@Name, @ListPrice, @Qty)";
+            string query = "INSERT INTO Product (CategoryId, Name, ListPrice, UnitCost, SuppId, Descn, Image, Qty) VALUES (@CategoryId, @Name, @ListPrice, @UnitCost, @SuppId, @Descn, @Image, @Qty)";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@CategoryId", product["CategoryId"]);
                 cmd.Parameters.AddWithValue("@Name", product["Name"]);
                 cmd.Parameters.AddWithValue("@ListPrice", product["ListPrice"]);
+                cmd.Parameters.AddWithValue("@UnitCost", product["UnitCost"]);
+                cmd.Parameters.AddWithValue("@SuppId", product["SuppId"]);
+                cmd.Parameters.AddWithValue("@Descn", product["Descn"]);
+                cmd.Parameters.AddWithValue("@Image", product["Image"]);
                 cmd.Parameters.AddWithValue("@Qty", product["Qty"]);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
+        public void DeleteCartItemsByProductId(int productId)
+        {
+            string query = "DELETE FROM CartItem WHERE ProId = @ProductId";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ProductId", productId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
