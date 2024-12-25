@@ -57,6 +57,7 @@
       <DependentUpon>MyPetShop.dbml</DependentUpon>
     </Compile>
     <Compile Include="OrderDAL.cs" />
+    <Compile Include="OrderItemDAL.cs" />
     <Compile Include="ProductDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

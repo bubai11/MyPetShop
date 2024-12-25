@@ -98,5 +98,60 @@ namespace MyPetShop.DAL
 
             return orderStatus;
         }
+        // 获取订单列表
+        public DataTable GetOrders()
+        {
+            string query = "SELECT OrderId, UserName, OrderDate, Status FROM [Order]";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+
+        // 更新订单状态
+        public void UpdateOrderStatus(int orderId, string status)
+        {
+            string query = "UPDATE [Order] SET Status = @Status WHERE OrderId = @OrderId";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@OrderId", orderId);
+                cmd.Parameters.AddWithValue("@Status", status);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        // 获取指定订单的基本信息
+        public Order GetOrderById(int orderId)
+        {
+            string query = "SELECT * FROM [Order] WHERE OrderId = @OrderId";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@OrderId", orderId);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    return new Order
+                    {
+                        OrderId = Convert.ToInt32(reader["OrderId"]),
+                        UserName = reader["UserName"].ToString(),
+                        OrderDate = Convert.ToDateTime(reader["OrderDate"]),
+                        Addr1 = reader["Addr1"].ToString(),
+                        Addr2 = reader["Addr2"].ToString(),
+                        City = reader["City"].ToString(),
+                        State = reader["State"].ToString(),
+                        Zip = reader["Zip"].ToString(),
+                        Phone = reader["Phone"].ToString(),
+                        Status = reader["Status"].ToString()
+                    };
+                }
+            }
+            return null;
+        }
     }
 }

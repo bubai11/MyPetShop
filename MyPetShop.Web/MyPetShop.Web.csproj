@@ -130,6 +130,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Controls\Category.ascx" />
     <Content Include="Controls\CustomSiteMap.ascx" />
+    <Content Include="Controls\ManagementLinks.ascx" />
     <Content Include="Controls\NewProduct.ascx" />
     <Content Include="Controls\PetTree.ascx" />
     <Content Include="Default.aspx" />
@@ -347,6 +348,13 @@
     </Compile>
     <Compile Include="Controls\CustomSiteMap.ascx.designer.cs">
       <DependentUpon>CustomSiteMap.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ManagementLinks.ascx.cs">
+      <DependentUpon>ManagementLinks.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ManagementLinks.ascx.designer.cs">
+      <DependentUpon>ManagementLinks.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\NewProduct.ascx.cs">
       <DependentUpon>NewProduct.ascx</DependentUpon>
