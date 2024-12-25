@@ -32,6 +32,21 @@ namespace MyPetShop.BLL
                 throw new Exception("订单提交失败: " + ex.Message, ex);
             }
         }
-    }
+        // 获取订单列表
+        public DataTable GetOrders()
+        {
+            return orderDAL.GetOrders();
+        }
 
+        // 审核订单
+        public void ReviewOrder(int orderId)
+        {
+            orderDAL.UpdateOrderStatus(orderId, "已审核");
+        }
+        // 获取订单的基本信息
+        public Order GetOrderById(int orderId)
+        {
+            return orderDAL.GetOrderById(orderId);
+        }
+    }
 }

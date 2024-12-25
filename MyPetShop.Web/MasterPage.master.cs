@@ -19,10 +19,10 @@ namespace MyPetShop.Web
                 InitializePage();
             }
             SetWalletBalance(GetSession());// 检查是否有刷新余额的标记
-            if (Session["RefreshBalance"] == "true")
+            if (Session["RefreshBalance"] as string == "true")
             {
                 SetWalletBalance(GetSession());
-                // 清除标记，避免重复刷新
+                // 清除标记，避免重复刷新  
                 Session["RefreshBalance"] = "false";
             }
         }

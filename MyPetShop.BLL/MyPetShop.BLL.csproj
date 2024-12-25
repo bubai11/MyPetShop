@@ -44,6 +44,7 @@
     <Compile Include="CartItemService.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="OrderItemService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
