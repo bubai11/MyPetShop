@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CustomSiteMap.ascx.cs" Inherits="MyPetShop.Web.Controls.CustomSiteMap" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MySiteMap.ascx.cs" Inherits="MyPetShop.Web.Controls.MySiteMap" %>
 <style>
     .breadcrumb {
         display: inline;

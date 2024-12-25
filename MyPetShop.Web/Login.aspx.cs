@@ -54,7 +54,7 @@ namespace MyPetShop.Web
 
 
                     // 重定向到首页或其他页面
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("/");
                 }
                 else
                 {

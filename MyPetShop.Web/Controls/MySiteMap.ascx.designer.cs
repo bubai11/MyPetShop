@@ -11,7 +11,7 @@ namespace MyPetShop.Web.Controls
 {
 
 
-    public partial class CustomSiteMap
+    public partial class MySiteMap
     {
 
         /// <summary>

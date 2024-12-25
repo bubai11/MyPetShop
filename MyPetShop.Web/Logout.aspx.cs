@@ -16,7 +16,7 @@ namespace MyPetShop.Web
             Session.Clear();
             Session.Abandon();
             // 重定向到首页
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("/");
         }
     }
 }

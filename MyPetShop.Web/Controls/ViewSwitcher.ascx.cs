@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.FriendlyUrls.Resolvers;
 
-namespace MyPetShop.Web
+namespace MyPetShop.Web.Controls
 {
     public partial class ViewSwitcher : System.Web.UI.UserControl
     {

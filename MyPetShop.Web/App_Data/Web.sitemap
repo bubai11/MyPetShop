@@ -1,6 +1,8 @@
 ﻿<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
-	<siteMapNode url="Default.aspx" title="首页" description="首页">
-		<siteMapNode url="/Pages/ShopCart.aspx" title="购物车" description="购物车" />
-		<siteMapNode url="/Pages/search.aspx" title="搜索" description="搜索" />
+	<siteMapNode url="/default.aspx" title="首页" description="首页">
+		<siteMapNode url="/Pages/ShopCart" title="购物车" description="购物车" />
+		<siteMapNode url="/Pages/search" title="搜索" description="搜索" />
+		<siteMapNode url="/Pages/Proshow" title="产品详情" description="产品详情" />
+
 	</siteMapNode>
 </siteMap>

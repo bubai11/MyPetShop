@@ -38,8 +38,7 @@ namespace MyPetShop.Web
 
         private void SetWalletBalance(System.Web.SessionState.HttpSessionState session)
         {
-            System.Diagnostics.Debug.WriteLine("kkk");
-            System.Diagnostics.Debug.WriteLine("登陆成功kkk" + session["CustomerId"]);
+            System.Diagnostics.Debug.WriteLine("登陆成功" + session["CustomerId"]);
             if (session["CustomerId"] != null)
             {
                 CustomerService customerService = new CustomerService();

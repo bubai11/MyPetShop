@@ -17,7 +17,7 @@ namespace MyPetShop.Web.Pages
                 if (HttpContext.Current.Session["Username"] == null)
                 {
                     // 用户未登录，重定向到登录页面
-                    Response.Redirect(ResolveUrl("~/Default.aspx"));
+                    Response.Redirect("/");
                 }
             }
         }
