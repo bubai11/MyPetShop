@@ -1,6 +1,6 @@
 ﻿    <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="MyPetShop.Web.MasterPage" %>  
     <%@ Register Src="~/Controls/UserStatus.ascx" TagPrefix="uc1" TagName="UserStatus" %>
-    <%@ Register Src="~/Controls/CustomSiteMap.ascx" TagPrefix="uc1" TagName="SiteMap" %>
+    <%@ Register Src="~/Controls/MySiteMap.ascx" TagPrefix="uc1" TagName="MySiteMap" %>
 
     <!DOCTYPE html>  
     <html lang="zh">  
@@ -183,7 +183,7 @@
         <nav class="navbar navbar-light">
                 <div class="container-fluid">
                     <div class="left">
-                    <a class="navbar-brand" href="Default.aspx">
+                    <a class="navbar-brand" href="/">
                         <img src="<%= ResolveUrl("~/Images/pet-shop.png") %>" alt="MyPetShop Logo" style="height: 40px;">
                     </a>
                     
@@ -198,7 +198,7 @@
                     <div class="d-flex">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="https://localhost:44337/Default.aspx">首页</a>
+                                <a class="nav-link" aria-current="page" href="/">首页</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="https://localhost:44337/Pages/ShopCart.aspx">购物车</a>
@@ -213,7 +213,7 @@
             <!-- Navigation -->
             <div class="map text-dark py-2">
                 <div class="col">
-                    <uc1:SiteMap ID="CustomSiteMap" runat="server" />
+                    <uc1:MySiteMap ID="MySiteMap" runat="server" />
                 </div>
             </div>
                 <div class="row mb-3">  

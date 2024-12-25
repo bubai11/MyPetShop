@@ -128,7 +128,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Controls\Category.ascx" />
-    <Content Include="Controls\CustomSiteMap.ascx" />
+    <Content Include="Controls\MySiteMap.ascx" />
     <Content Include="Controls\ManagementLinks.ascx" />
     <Content Include="Controls\NewProduct.ascx" />
     <Content Include="Controls\PetTree.ascx" />
@@ -334,12 +334,12 @@
     <Compile Include="Controls\Category.ascx.designer.cs">
       <DependentUpon>Category.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomSiteMap.ascx.cs">
-      <DependentUpon>CustomSiteMap.ascx</DependentUpon>
+    <Compile Include="Controls\MySiteMap.ascx.cs">
+      <DependentUpon>MySiteMap.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Controls\CustomSiteMap.ascx.designer.cs">
-      <DependentUpon>CustomSiteMap.ascx</DependentUpon>
+    <Compile Include="Controls\MySiteMap.ascx.designer.cs">
+      <DependentUpon>MySiteMap.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ManagementLinks.ascx.cs">
       <DependentUpon>ManagementLinks.ascx</DependentUpon>

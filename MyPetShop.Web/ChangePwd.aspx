@@ -124,7 +124,7 @@
             
         <div class="tips">
                 <asp:Label ID="lblMsg" CssClass="text-danger" runat="server"></asp:Label>
-            <a href="Default.aspx">返回首页</a>
+            <a href="/">返回首页</a>
         </div>
         </form>
     </div>
