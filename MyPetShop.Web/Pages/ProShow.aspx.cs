@@ -2,7 +2,6 @@
 using MyPetShop.DAL;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Web;
 using System.Web.UI.WebControls;
 
@@ -13,6 +12,7 @@ namespace MyPetShop.Web.Pages
         private CategoryService categoryService = new CategoryService();
         private CartItemService cartItemService = new CartItemService();
         private ProductService productService = new ProductService();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,23 +25,23 @@ namespace MyPetShop.Web.Pages
         // 加载商品分类导航
         private void LoadCategoryNavigation()
         {
-            // 直接调用 PetTree 用户控件的 LoadCategories 方法
             CategoryNavigation1.LoadCategories();
         }
-        //// 加载商品分类导航
-        //private void LoadCategoryNavigation()
-        //{
-        //    var categories = categoryService.GetAllCategories();  // 获取所有商品分类
-        //    CategoryNavigation1.DataSource = categories;  // 假设 CategoryNavigation 是用户控件
-        //    CategoryNavigation1.DataBind();
-        //}
 
         // 加载商品列表
         private void LoadProductList()
         {
             int categoryId = 0;
             string productName = Request.QueryString["ProductName"];
+            if (string.IsNullOrEmpty(productName) && string.IsNullOrEmpty(Request.QueryString["CategoryId"]))
+            {
+                // 如果没有查询参数，则显示提示信息
+                lblNoProduct.Visible = true;
+                ProductGridView.Visible = false;
+                return;  // 如果没有商品参数，退出加载商品的过程
+            }
 
+            // 设置分类 ID（如果有）
             if (!string.IsNullOrEmpty(Request.QueryString["CategoryId"]))
             {
                 categoryId = int.Parse(Request.QueryString["CategoryId"]);
@@ -56,6 +56,10 @@ namespace MyPetShop.Web.Pages
             {
                 products = productService.GetProductsByCategory(categoryId);  // 按分类查询
             }
+
+            // 如果有商品，则隐藏提示信息并显示商品列表
+            lblNoProduct.Visible = false;
+            ProductGridView.Visible = true;
 
             ProductGridView.DataSource = products;
             ProductGridView.DataBind();

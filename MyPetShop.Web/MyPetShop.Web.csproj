@@ -103,6 +103,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\AddPro.aspx" />
+    <Content Include="Admin\AdminMaster.aspx" />
     <Content Include="Admin\CategoryMaster.aspx" />
     <Content Include="Admin\OrderMaster.aspx" />
     <Content Include="Admin\OrderSub.aspx" />
@@ -137,12 +138,15 @@
     <Content Include="favicon.ico" />
     <Content Include="GetPwd.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\diagram.png" />
+    <Content Include="Images\kitten.png" />
     <Content Include="Images\loupe.png" />
     <Content Include="Images\map.jpg" />
     <Content Include="Images\mouseOut.jpg" />
     <Content Include="Images\mouseOver.jpg" />
     <Content Include="Images\nav.jpg" />
     <Content Include="Images\pet-shop.png" />
+    <Content Include="Images\tracking.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Pages\OrderList.aspx" />
@@ -276,6 +280,13 @@
     </Compile>
     <Compile Include="Admin\AddPro.aspx.designer.cs">
       <DependentUpon>AddPro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminMaster.aspx.cs">
+      <DependentUpon>AdminMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminMaster.aspx.designer.cs">
+      <DependentUpon>AdminMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CategoryMaster.aspx.cs">
       <DependentUpon>CategoryMaster.aspx</DependentUpon>

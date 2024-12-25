@@ -2,7 +2,9 @@
 	<siteMapNode url="/default.aspx" title="首页" description="首页">
 		<siteMapNode url="/Pages/ShopCart" title="购物车" description="购物车" />
 		<siteMapNode url="/Pages/search" title="搜索" description="搜索" />
-		<siteMapNode url="/Pages/Proshow" title="产品详情" description="产品详情" />
+		<siteMapNode url="/Pages/Proshow" title="商品详情" description="商品详情" />
+		<siteMapNode url="/Pages/OrderList" title="订单列表" description="订单列表" />
+		<siteMapNode url="/Pages/SubmitCart" title="提交订单" description="提交订单" />
 
 	</siteMapNode>
 </siteMap>

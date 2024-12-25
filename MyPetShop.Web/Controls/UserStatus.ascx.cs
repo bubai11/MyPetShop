@@ -27,11 +27,13 @@ namespace MyPetShop.Web.Controls
         {
             // 获取 Session 信息
             var username = HttpContext.Current.Session["UserName"] as string;
-            var isAdmin = HttpContext.Current.Session["IsAdmin"] != null && (bool)HttpContext.Current.Session["IsAdmin"];
+            //var isAdmin = HttpContext.Current.Session["IsAdmin"] != null && (bool)HttpContext.Current.Session["IsAdmin"];
+            //var isAdmin = Session["UserRole"].ToString() == "Admin";
+            var isAdmin = (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin");
 
             if (string.IsNullOrEmpty(username)) // 未登录状态
             {
-                lblStatus.Text = "您还未登录，";
+                lblStatus.Text = "您还未登录！";
                 lnkAction1.Text = "登录";
                 lnkAction1.NavigateUrl = "~/Login.aspx";
                 lnkAction2.Text = "注册";
@@ -40,9 +42,9 @@ namespace MyPetShop.Web.Controls
             }
             else if (isAdmin) // 管理员登录状态
             {
-                lblStatus.Text = $"您好，【{username}】";
+                lblStatus.Text = $"您好  {username}";
                 lnkAction1.Text = "系统管理";
-                lnkAction1.NavigateUrl = "~/Admin/CategoryMaster.aspx";
+                lnkAction1.NavigateUrl = "~/Admin/AdminMaster.aspx";
                 lnkAction2.Text = "退出登录";
                 lnkAction2.NavigateUrl = "~/Logout.aspx";
                 lnkAction3.Visible = false; // 隐藏第三个链接

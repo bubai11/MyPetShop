@@ -49,6 +49,14 @@ namespace MyPetShop.Web
                     HttpContext.Current.Session["UserName"] = user.Name;
                     HttpContext.Current.Session["CustomerId"] = user.CustomerId;
                     bool isAdmin = name.Equals("Admin", StringComparison.OrdinalIgnoreCase);
+                    if (isAdmin)
+                    {
+                        HttpContext.Current.Session["UserRole"] = "Admin";
+                    }
+                    else
+                    {
+                        HttpContext.Current.Session["UserRole"] = "Customer";
+                    }
                     HttpContext.Current.Session["IsAdmin"] = isAdmin;
                     System.Diagnostics.Debug.WriteLine("登陆成功"+HttpContext.Current.Session["CustomerId"]);
 
