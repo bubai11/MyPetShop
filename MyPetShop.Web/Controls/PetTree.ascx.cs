@@ -70,32 +70,35 @@ namespace MyPetShop.Web.Controls
             }
         }
         // 加载商品数据并绑定到对应分类的子节点
+        // 异步加载商品节点
         private void LoadProductsForCategory(TreeNode categoryNode, int categoryId)
         {
             try
             {
-                // 调用 CategoryService 获取该分类下的商品数据
-                DataTable products = categoryService.GetProductsByCategory(categoryId);
-
-                if (products != null && products.Rows.Count > 0)
+                // 使用懒加载：只有展开时才加载商品数据
+                if (categoryNode.ChildNodes.Count == 0)  // 如果没有子节点，才进行加载
                 {
-                    // 遍历每个商品并添加为子节点
-                    foreach (DataRow row in products.Rows)
-                    {
-                        TreeNode productNode = new TreeNode
-                        {
-                            Text = row["Name"].ToString(),  // 商品名称
-                            Value = row["ProductId"].ToString(),  // 商品ID
-                            NavigateUrl = ResolveUrl($"~/Pages/ProShow.aspx?CategoryId={row["CategoryId"]}") };
+                    DataTable products = categoryService.GetProductsByCategory(categoryId);
 
-                        // 将商品节点添加到当前分类节点的子节点中
-                        categoryNode.ChildNodes.Add(productNode);
+                    if (products != null && products.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in products.Rows)
+                        {
+                            TreeNode productNode = new TreeNode
+                            {
+                                Text = row["Name"].ToString(),
+                                Value = row["ProductId"].ToString(),
+                                NavigateUrl = ResolveUrl($"~/Pages/ProShow.aspx?ProductName={row["Name"]}")
+                            };
+                            categoryNode.ChildNodes.Add(productNode);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                // 处理错误
+                // 使用日志记录异常
+                // log.Error("加载商品数据时出错: " + ex.Message);
                 Console.WriteLine("加载商品数据时出错: " + ex.Message);
             }
         }

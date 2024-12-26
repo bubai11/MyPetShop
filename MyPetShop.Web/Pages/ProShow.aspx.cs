@@ -41,7 +41,7 @@ namespace MyPetShop.Web.Pages
                 return;  // 如果没有商品参数，退出加载商品的过程
             }
 
-            // 设置分类 ID（如果有）
+            // 设置分类 ID
             if (!string.IsNullOrEmpty(Request.QueryString["CategoryId"]))
             {
                 categoryId = int.Parse(Request.QueryString["CategoryId"]);
