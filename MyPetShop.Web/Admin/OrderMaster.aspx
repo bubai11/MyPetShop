@@ -35,11 +35,11 @@
             width: 100%; /* 确保表格宽度占满父容器 */
         }
 
-        .btn {
+        .orderBtn  {
             margin-right: 10px; /* 按钮之间的间距 */
         }
 
-        .btn-primary {
+        .order-btn-primary {
             margin-top: 20px;
         }
 
@@ -121,14 +121,14 @@
                     <asp:TemplateField HeaderText="操作">
                         <ItemTemplate>
                             <asp:Button ID="btnReview" runat="server" Text="审核商品" CommandName="Review"
-                                        CommandArgument='<%# Eval("OrderId") %>' CssClass="btn btn-warning btn-sm" />
+                                        CommandArgument='<%# Eval("OrderId") %>' CssClass="orderBtn btn btn-warning btn-sm" />
                             <asp:Button ID="btnDetails" runat="server" Text="查看订单详情" CommandName="Details"
-                                        CommandArgument='<%# Eval("OrderId") %>' CssClass="btn btn-info btn-sm" />
+                                        CommandArgument='<%# Eval("OrderId") %>' CssClass="orderBtn btn btn-info btn-sm" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <asp:Button ID="btnBulkReview" runat="server" Text="批量审核" OnClick="btnBulkReview_Click" CssClass="btn btn-primary" />
+            <asp:Button ID="btnBulkReview" runat="server" Text="批量审核" OnClick="btnBulkReview_Click" CssClass="orderBtn btn order-btn-primary btn-primary" />
         </div>
     </div>
 </asp:Content>

@@ -10,7 +10,8 @@
         margin-bottom: 20px;
     }
     .title-container h2 {
-        font-size: 36px;
+        font-family:STCaiyun;
+        font-size: 40px;
         color: #333;
         margin: 0;
         display: inline-block;
