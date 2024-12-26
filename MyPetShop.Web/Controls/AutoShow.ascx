@@ -5,10 +5,32 @@
         width:750px;
         margin-right: 60px;
     }
+    .title-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .title-container h2 {
+        font-size: 36px;
+        color: #333;
+        margin: 0;
+        display: inline-block;
+        position: relative;
+        font-weight: bold;
+    }
+    .title-container img {
+        vertical-align: middle;
+        margin-left: 10px;
+        width: 150px; /* 根据实际图片大小调整 */
+        height: auto; /* 保持图片比例 */
+    }
 </style>
 <asp:ScriptManager ID="ScriptManager1" runat="server" />
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
+        <div class="title-container">
+            <h2>欢迎来到宠物商店！</h2>
+            <img src="../Images/autoshow.gif" alt="热销商品推荐" />
+        </div>
         <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Visible="false" />
 
         <asp:GridView ID="gvProducts" runat="server" CssClass="table table-striped autoshow" AutoGenerateColumns="False">

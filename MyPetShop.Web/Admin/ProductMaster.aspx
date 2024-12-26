@@ -5,16 +5,24 @@
     <style>  
         /* 定制删除按钮颜色 */  
         .btn-custom-delete {  
-            background-color: #B3C8CF;  
-            color: #000; /* 调整字体颜色 */  
-            border: none; /* 移除边框 */  
+            background-color: #208bbae6;  
+            color: #fff; /* 调整字体颜色 */  
+            border: none; /* 移除边框 */
+            border-radius:5px;
+            font-weight:500;
+            height: 35px;
+            padding: 0 10px;
         }  
 
         /* 定制添加按钮颜色 */  
         .btn-custom-add {  
-            background-color: #E5E1DA;  
-            color: #000; /* 调整字体颜色 */  
+            background-color: #139557c2;  
+            color: #fff; /* 调整字体颜色 */  
             border: none; /* 移除边框 */  
+            border-radius:5px;
+            font-weight:500;
+            height: 35px;
+            padding: 0 10px;
         }  
 
         /* 去掉链接的下划线 */  
@@ -120,7 +128,7 @@
                     <asp:BoundField DataField="Qty" HeaderText="库存" />  
                     <asp:TemplateField HeaderText="操作">  
                         <ItemTemplate>  
-                            <a href="ProductSub.aspx?ProductId=<%# Eval("ProductId") %>" class="btn btn-warning btn-sm">修改</a>  
+                            <a href="ProductSub.aspx?ProductId=<%# Eval("ProductId") %>" class="btn btn-primary btn-sm">修改</a>  
                         </ItemTemplate>  
                     </asp:TemplateField>  
                 </Columns>  
