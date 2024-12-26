@@ -112,7 +112,7 @@
 
         /* 每个属性和值的布局 */
         #orderDetails p {
-            width:220px;
+            width:30%;
             display: flex;
             justify-content: space-between; /* 属性和值分开显示 */
         }
@@ -125,7 +125,7 @@
             border: 1px solid #ddd;
             display:flex;
             flex-flow:row wrap;
-            width:900px;
+            width:100%;
             justify-content:space-between;
             align-items:center;
         }
