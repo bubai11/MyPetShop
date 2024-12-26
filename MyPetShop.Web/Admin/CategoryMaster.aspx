@@ -101,7 +101,7 @@
                         <td><%# Eval("Name") %></td>
                         <td><%# Eval("Descn") %></td>
                         <td>
-                            <asp:Button ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("CategoryId") %>' Text="编辑" CssClass="btn btn-warning btn-sm" />
+                            <asp:Button ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("CategoryId") %>' Text="编辑" CssClass="btn btn-primary btn-sm" />
                             <asp:Button ID="btnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("CategoryId") %>' Text="删除" CssClass="btn btn-danger btn-sm" />
                         </td>
                     </tr>

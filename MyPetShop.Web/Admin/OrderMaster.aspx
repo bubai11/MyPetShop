@@ -66,7 +66,7 @@
 
         /* 修改按钮颜色 */
         .btn-warning {
-            background-color: #B3C8CF; /* 修改审核商品按钮颜色 */
+            background-color: #80c7df8f; /* 修改审核商品按钮颜色 */
             border-color: #A1B7B4; /* 边框颜色 */
         }
 
@@ -76,7 +76,7 @@
         }
 
         .btn-info {
-            background-color: #E5E1DA; /* 修改查看订单详情按钮颜色 */
+            background-color: #febd557d; /* 修改查看订单详情按钮颜色 */
             border-color: #D5D1C8; /* 边框颜色 */
         }
 
