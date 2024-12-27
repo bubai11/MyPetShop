@@ -37,6 +37,10 @@ namespace MyPetShop.BLL
             return productDAL.GetProductsByCategory(categoryId);
         }
 
+        public DataTable GetProductsByCategorydDataTable(int categoryId)
+        {
+            return productDAL.GetProductsByCategorydDataTable(categoryId);
+        }
         // 按商品名称获取商品
         public List<Product> GetProductsByName(string productName)
         {

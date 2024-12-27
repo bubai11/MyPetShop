@@ -102,7 +102,6 @@
         /* 订单主表面板样式 */
         #orderDetails {
             display: grid; /* 使用 Grid 布局 */
-            grid-template-columns: 1fr 1fr; /* 两列布局 */
             gap: 10px; /* 列之间的间距 */
             border: 2px solid #ddd; /* 添加边框 */
             border-radius: 4px; /* 圆角边框 */

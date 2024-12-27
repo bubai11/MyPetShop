@@ -160,6 +160,31 @@ namespace MyPetShop.DAL
 
 
         // 获取某分类的商品
+        public DataTable GetProductsByCategorydDataTable(int categoryId)
+        {
+            // 创建一个新的 DataTable  
+            DataTable productsTable = new DataTable();
+
+            // 定义 SQL 查询  
+            string query = "SELECT ProductId, Name, ListPrice, UnitCost, Descn, Image, Qty FROM Product WHERE CategoryId = @CategoryId";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+
+                conn.Open();
+
+                // 创建 SqlDataAdapter 来填充 DataTable  
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    // 填充 DataTable  
+                    adapter.Fill(productsTable);
+                }
+            }
+
+            return productsTable;
+        }
         public List<Product> GetProductsByCategory(int categoryId)
         {
             List<Product> products = new List<Product>();

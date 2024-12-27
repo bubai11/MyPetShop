@@ -106,9 +106,19 @@ namespace MyPetShop.Web.Controls
         protected void TreeViewCategories_SelectedNodeChanged(object sender, EventArgs e)
         {
             string selectedNodeUrl = TreeViewCategories.SelectedNode.NavigateUrl;
+            string selectedValue = TreeViewCategories.SelectedNode.Value; // 获取 SelectedValue  
+
             if (!string.IsNullOrEmpty(selectedNodeUrl))
             {
                 Response.Redirect(selectedNodeUrl);
+            }
+        }
+        public string SelectedValue
+        {
+            get
+            {
+                // 提供一个公共属性以获取当前选中的值  
+                return TreeViewCategories.SelectedNode?.Value; // 确保 SelectedNode 不为 null  
             }
         }
 

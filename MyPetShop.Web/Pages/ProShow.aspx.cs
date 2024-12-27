@@ -9,6 +9,7 @@ namespace MyPetShop.Web.Pages
 {
     public partial class ProShow : System.Web.UI.Page
     {
+
         private CategoryService categoryService = new CategoryService();
         private CartItemService cartItemService = new CartItemService();
         private ProductService productService = new ProductService();
@@ -17,16 +18,41 @@ namespace MyPetShop.Web.Pages
         {
             if (!IsPostBack)
             {
-                LoadCategoryNavigation();  // 加载商品分类导航
+                //LoadCategoryNavigation();  // 加载商品分类导航
                 LoadProductList();         // 加载商品详细信息列表
             }
         }
-
-        // 加载商品分类导航
-        private void LoadCategoryNavigation()
+        protected void CategoryNavigation1_SelectedNodeChanged(object sender, EventArgs e)
         {
-            CategoryNavigation1.LoadCategories();
+            // 获取所选分类的节点数据
+            string categoryId = CategoryNavigation1.SelectedValue;
+
+            // 查询该分类下的商品
+            var products = productService.GetProductsByCategory(int.Parse(categoryId)); // 假设此方法返回该分类下的商品列表
+
+            // 绑定查询到的商品数据
+            ProductGridView.DataSource = products;
+            ProductGridView.DataBind();
+
+            // 如果没有商品，显示提示信息
+            if (products.Count == 0)
+            {
+                lblNoProduct.Visible = true;
+            }
+            else
+            {
+                lblNoProduct.Visible = false;
+            }
         }
+
+
+
+
+        //// 加载商品分类导航
+        //private void LoadCategoryNavigation()
+        //{
+        //    CategoryNavigation1.LoadCategories();
+        //}
 
         // 加载商品列表
         private void LoadProductList()
