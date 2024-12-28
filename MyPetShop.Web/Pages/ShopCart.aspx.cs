@@ -98,20 +98,30 @@ namespace MyPetShop.Web.Pages
                 // 获取 DataItem
                 var dataItem = row.DataItem;
                 // 假设 DataItem 是 DataRowView 类型，使用索引访问器来获取列值
-                int customerId = Convert.ToInt32(((DataRowView)dataItem)["CustomerId"]);
-                int proId = Convert.ToInt32(((DataRowView)dataItem)["ProId"]);
-                int qty = Convert.ToInt32(txtQty.Text);
-
-                bool isUpdated = cartItemSrv.UpdateProductQuantity(customerId, proId, qty);
-                if (isUpdated)
+                if (dataItem != null)
                 {
-                    Console.WriteLine("购物车商品数量更新成功！");
+                    int customerId = Convert.ToInt32(((DataRowView)dataItem)["CustomerId"]);
+                    int proId = Convert.ToInt32(((DataRowView)dataItem)["ProId"]);
+                    int qty = Convert.ToInt32(txtQty.Text);
+                    bool isUpdated = cartItemSrv.UpdateProductQuantity(customerId, proId, qty);
+                    if (isUpdated)
+                    {
+                        Console.WriteLine("购物车商品数量更新成功！");
+                    }
+                    else
+                    {
+                        Console.WriteLine("购物车商品数量更新失败！");
+                    }
+
+                    BindCart(customerId);
                 }
                 else
                 {
-                    Console.WriteLine("购物车商品数量更新失败！");
+                    // 处理 dataItem 为 null 的情况
+                    Console.WriteLine("dataItem is null, using default values.");
                 }
-                BindCart(customerId);
+
+                ;
             }
         }
 

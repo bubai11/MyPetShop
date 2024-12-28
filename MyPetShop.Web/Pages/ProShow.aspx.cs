@@ -108,9 +108,10 @@ namespace MyPetShop.Web.Pages
             int customerId = Convert.ToInt32(Session["CustomerId"]);
             int qty = 1; // 默认数量为 1
             cartItemService.AddProductToCart(customerId, productId, qty);
-
+            lblNoProduct.Visible = true;
+            lblNoProduct.Text = "商品已加入购物车";
             // 提示用户商品已加入购物车
-            Response.Redirect(ResolveUrl("~/Pages/SubmitCart.aspx"));  // 重定向到购物车页面
+            //Response.Redirect(ResolveUrl("~/Pages/S.aspx"));  // 重定向到购物车页面
         }
     }
 }

@@ -12,27 +12,39 @@ namespace MyPetShop.Web.Controls
 {
     public partial class AutoShow : System.Web.UI.UserControl
     {
-        private int currentIndex = 0;
+        private int currentIndex;
         private List<DataRow> productsList;
         private readonly ProductService productService = new ProductService();
+        private bool IsDataLoaded = false;  // 用于标记数据是否已加载
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                LoadProducts();
-            }
+
+                // 初始化 currentIndex
+                if (Session["currentIndex"] == null)
+                {
+                    Session["currentIndex"] = 0;  // 如果 Session 中没有 currentIndex，就初始化为 0
+                }
+                else
+                {
+                    currentIndex = (int)Session["currentIndex"];  // 从 Session 中获取 currentIndex
+                }
+            LoadProducts();
+
         }
 
         // 获取所有商品数据并加载到 GridView
         private void LoadProducts()
         {
+            if (IsDataLoaded) return;
             try
             {
                 DataTable products = productService.GetAllProducts();  // 获取商品数据
                 if (products != null && products.Rows.Count > 0)
                 {
                     productsList = products.AsEnumerable().ToList();  // 将 DataTable 转换为 List<DataRow>
+                    IsDataLoaded = true;  // 标记数据已加载
                     BindProduct();  // 绑定商品数据
                 }
                 else
@@ -51,7 +63,10 @@ namespace MyPetShop.Web.Controls
         {
             if (productsList != null && productsList.Count > 0)
             {
+                // 创建一个新的 DataTable
                 DataTable dt = new DataTable();
+
+                // 添加列，确保列顺序与 ItemArray 中的数据顺序一致
                 dt.Columns.Add("ProductId");
                 dt.Columns.Add("Name");
                 dt.Columns.Add("ListPrice");
@@ -60,12 +75,22 @@ namespace MyPetShop.Web.Controls
                 dt.Columns.Add("Image");
                 dt.Columns.Add("Qty");
 
+                // 清空 DataTable 的行，以防止重复数据
+                dt.Rows.Clear();
+
                 // 获取当前显示的商品
                 DataRow currentProduct = productsList[currentIndex];
+
+                // 将 currentProduct 的数据添加到 DataTable
                 dt.Rows.Add(currentProduct.ItemArray);
 
+                // 调试输出当前商品和 DataTable 的状态
+
+                // 绑定 DataTable 到 GridView
                 gvProducts.DataSource = dt; // 绑定当前商品数据到 GridView
                 gvProducts.DataBind();
+
+                // 调试输出 GridView 的状态
             }
         }
 
@@ -73,8 +98,7 @@ namespace MyPetShop.Web.Controls
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             try
-            {
-                // 确保 productsList 已加载并不为空
+            { // 确保 productsList 已加载并不为空
                 if (productsList == null || productsList.Count == 0)
                 {
                     System.Diagnostics.Debug.WriteLine("商品列表为空，无法切换商品。");
@@ -82,12 +106,16 @@ namespace MyPetShop.Web.Controls
                 }
 
                 currentIndex++;  // 切换到下一个商品
+                System.Diagnostics.Debug.WriteLine("currentIndex:"+ currentIndex);
+
 
                 if (currentIndex >= productsList.Count)
                 {
                     currentIndex = 0;  // 如果已经显示到最后一个商品，则从头开始
                 }
 
+                // 更新 Session 中的 currentIndex
+                Session["currentIndex"] = currentIndex;
                 BindProduct();  // 重新绑定商品数据
             }
             catch (Exception ex)

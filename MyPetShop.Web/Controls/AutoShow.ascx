@@ -60,9 +60,11 @@
     </Triggers>
 </asp:UpdatePanel>
 
-<asp:Timer ID="Timer1" runat="server" Interval="3000" OnTick="Timer1_Tick" />
+
+<asp:Timer ID="Timer1" runat="server" Interval="4000" OnTick="Timer1_Tick" />
 <asp:UpdateProgress ID="UpdateProgress1" runat="server">
     <ProgressTemplate>
         <div>加载中...</div>
     </ProgressTemplate>
 </asp:UpdateProgress>
+

@@ -51,7 +51,7 @@ namespace MyPetShop.Web.Controls
             }
             else // 普通用户登录状态
             {
-                lblStatus.Text = $"您好，【{username}】";
+                lblStatus.Text = $"您好 {username}";
                 lnkAction1.Text = "修改密码";
                 lnkAction1.NavigateUrl = "../ChangePwd.aspx";
                 lnkAction2.Text = "购物记录";

@@ -56,6 +56,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyPetShop.dbml</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="OrderDAL.cs" />
     <Compile Include="OrderItemDAL.cs" />
     <Compile Include="ProductDAL.cs" />
@@ -86,6 +87,13 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\MyPetShop.DAL.dll" />
+    <Content Include="bin\Debug\MyPetShop.DAL.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

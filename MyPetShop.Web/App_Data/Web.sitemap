@@ -5,6 +5,16 @@
 		<siteMapNode url="/Pages/Proshow" title="商品详情" description="商品详情" />
 		<siteMapNode url="/Pages/OrderList" title="订单列表" description="订单列表" />
 		<siteMapNode url="/Pages/SubmitCart" title="提交订单" description="提交订单" />
+		
+		<siteMapNode url="/Admin/AddPro" title="添加商品" description="添加商品" />
+		<siteMapNode url="/Admin/AdminMaster" title="系统管理" description="系统管理" />
+		<siteMapNode url="/Admin/ProductMaster" title="商品管理" description="商品管理" />
+		<siteMapNode url="/Admin/ProductSub" title="修改商品信息" description="修改商品信息" />
+		<siteMapNode url="/Admin/CategoryMaster" title="商品分类管理" description="商品分类管理" />
+		<siteMapNode url="/Admin/CategoryEdit" title="编辑商品分类" description="编辑商品分类" />
+		<siteMapNode url="/Admin/OrderMaster" title="订单管理" description="订单管理" />
+		<siteMapNode url="/Admin/OrderSub" title="查看订单" description="查看订单" />
+
 
 	</siteMapNode>
 </siteMap>
